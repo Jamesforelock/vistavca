@@ -7,6 +7,7 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/fontawesome/css/all.css?v=<?php echo $timestamp;?>">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css?v=<?php echo $timestamp;?>" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/styles.css?v=<?php echo $timestamp;?>">
