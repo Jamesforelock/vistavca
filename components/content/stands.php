@@ -8,9 +8,10 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title article__title">Article</h5>
+                    <h5 class="card-title article__title">Stand</h5>
                     <p class="card-text article__text"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam molestiae mollitia numquam officiis. Alias aliquid asperiores beatae cum ea ipsa nostrum voluptatum? Assumenda at dicta non nostrum omnis sapiente ut!</span><span>Aliquam, error odio! Aspernatur possimus quas rem voluptatibus? Accusamus adipisci aliquid blanditiis corporis debitis dolores ducimus eos illo, incidunt inventore ipsam libero molestias nemo nostrum, nulla quas tenetur. Cupiditate, suscipit.</span></p>
                     <p class="card-text article__text article__text_muted"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <p class="card-text article__text article__text_muted"><small class="text-muted">Assistants: assis1, assis2 </small></p>
                 </div>
             </div>
         </div>
