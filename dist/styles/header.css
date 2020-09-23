@@ -1,0 +1,22 @@
+.header {
+  padding: 0 10px;
+  background-color: #5d05d1;
+  color: white;
+}
+.header .nav {
+  width: 300px;
+  display: flex;
+}
+.header .nav__link {
+  padding: 5px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex: 1 0 auto;
+  color: white;
+}
+.header .nav__link:hover {
+  background-color: #380081;
+  text-decoration: none;
+  transition: 0.2s linear;
+}
