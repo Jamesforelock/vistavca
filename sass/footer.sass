@@ -1,8 +1,18 @@
 .footer
-    height: 180px
-    padding: 15px 0px
+    height: 250px
+    padding: 15px 0
     background-color: #000000
     color: white
+    &__title
+        text-transform: uppercase
+    .list
+        padding: 0
+        list-style-type: none
+        &__item
+            font-size: 12px
+            &:before
+                content: ""
+                margin-right: 5px
     .social
         margin-top: 10px
         display: flex
@@ -14,5 +24,5 @@
                 color: forestgreen
                 transition: .2s linear
         &__icon
-            margin: 0px 25px
+            margin: 0 25px
     
