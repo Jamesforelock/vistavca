@@ -1,6 +1,6 @@
 <?php
-    if(isset($_GET['page'])) { // Если в GET-запросе установлен параметр page
-        switch ($_GET['page']) {
+    if(isset($_GET['section'])) { // Если в GET-запросе установлен параметр section
+        switch ($_GET['section']) {
             case "excursions":
                 require "excursions.php";
                 break;
