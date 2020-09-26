@@ -130,6 +130,7 @@ a:hover {
   border-radius: 0;
 }
 .article__text {
+  font-size: 13px;
   text-align: justify;
 }
 
