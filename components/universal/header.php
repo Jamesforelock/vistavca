@@ -5,10 +5,10 @@
             <span class="logo__name">VISTAVCA</span>
         </div>
         <nav class="nav">
-            <a href="./index.php?section=stands" class="nav__link">Stands</a>
-            <a href="./index.php?section=assistants" class="nav__link">Stand assistants</a>
-            <a href="./index.php?section=excursions" class="nav__link">Excursions</a>
-            <a href="./index.php?section=visitors" class="nav__link">Our visitors</a>
+            <a href="./index.php?section=articles&type=stand" class="nav__link">Stands</a>
+            <a href="./index.php?section=people&type=assistant" class="nav__link">Stand assistants</a>
+            <a href="./index.php?section=articles&type=excursion" class="nav__link">Excursions</a>
+            <a href="./index.php?section=people&type=visitor" class="nav__link">Our visitors</a>
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Profile
