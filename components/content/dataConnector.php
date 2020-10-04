@@ -1,11 +1,9 @@
 <?php
-require "dbConnector.php";
 require "./components/universal/paginator.php";
 require "./components/content/articles/article.php";
 require "./components/content/people/human.php";
 
-function renderData($itemsCount, $table, $currentPage) {
-    $conn = connectToDb();
+function renderData($conn, $itemsCount, $table, $currentPage) {
     // Получение количества всех элементов и генерация количества страниц
     $query_getAllItemsCount = 'SELECT COUNT(*) FROM '.$table;
     $getAllItemsCount = mysqli_query($conn, $query_getAllItemsCount);
@@ -46,7 +44,11 @@ function renderData($itemsCount, $table, $currentPage) {
                 <div class="row">
                 ';
             }
-            Human($item['Name'], $item['Description'], 'assets/i/'.$table.'/' . $item['Picture']);
+            // Если у пользователя есть фото
+            if(isset($item['Picture'])) $picturePath = 'assets/i/'.$table.'/' . $item['Picture'];
+            // Если у пользователя нет фото
+            else $picturePath = 'assets/i/noPhoto.jpg';
+            Human($item['Name'], $item['Description'], $picturePath);
             $itemsRowCount++;
         }
             echo '</div>'; // Закрываем строку

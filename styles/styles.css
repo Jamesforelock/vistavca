@@ -76,7 +76,7 @@ a:hover {
   font-family: "Eagle Lake", cursive;
 }
 .header .nav {
-  width: 500px;
+  min-width: 500px;
   display: flex;
 }
 .header .nav__link {
@@ -189,8 +189,9 @@ a:hover {
 }
 
 .formRow {
-  padding: 25px;
-  border-radius: 25px;
+  min-width: 50%;
+  padding: 10px;
+  border-radius: 15px;
   background-color: white;
 }
 
@@ -200,4 +201,16 @@ a:hover {
 .backLink:hover {
   color: green;
   transition: 0.2s linears;
+}
+
+.mainBtn {
+  min-width: 35%;
+}
+
+.secondaryBtn {
+  width: 100%;
+}
+
+#secretCodeInput {
+  display: none;
 }

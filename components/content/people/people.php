@@ -17,7 +17,7 @@
         case 'visitor': // Если тип статей - экскурсии
             echo '<h1>Visitors</h1>
                  <p>Here you can see our nice Visitors</p>';
-            renderData(6, "visitor", $currentPage);
+            renderData($conn,6, "visitor", $currentPage);
             break;
         case 'assistant': // Если тип статей - стенды
             echo '<h1>Assistants</h1>
@@ -25,7 +25,7 @@
                 adipisci temporibus corrupti similique expedita placeat aut sed necessitatibus praesentium, veritatis,
                 dignissimos neque nisi consequatur?Earum nemo aperiam aspernatur sint assumenda ea. Nobis fugiat quia cupiditate
                 odio eius hic earum, atque sit quas ut quae enim ad vero, omnis molestiae tempora rerum harum voluptas delectus.</p>';
-            renderData(6, "assistant", $currentPage);
+            renderData($conn, 6, "assistant", $currentPage);
             break;
     }
     ?>

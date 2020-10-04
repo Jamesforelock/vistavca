@@ -14,6 +14,11 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
     <title>Vistavca</title>
 </head>
 <body>
+    <?php
+        require "./components/universal/dbConnector.php";
+        $conn = connectToDb(); // Подключение к БД
+        require "./auth/autologin.php";
+    ?>
     <div class="container-fluid wrapper">
         <?php
             include "./components/universal/header.php"
