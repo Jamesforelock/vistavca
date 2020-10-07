@@ -22,15 +22,15 @@ function setSessionDataAndHash($conn, $user, $userType, $rememberMe) {
         $addHash_query = 'INSERT INTO hu VALUES ("'.$hash.'", '.$userId.', "'.$userType.'")';
         $addHash = mysqli_query($conn, $addHash_query);
         if($addHash) {
-            setcookie("hash", $hash, time()+3600, "/");
+            setcookie("hash", $hash, time()+86400, "/"); // Установка куки на 24 часа
         }
     }
 
 }
 if(isset($_POST['signIn'])) {
     if(!empty($_POST['login']) && !empty($_POST['password'])) { // Если все обязательные поля заполнены
-        $enteredLogin = $_POST['login']; // Введённый логин
-        $enteredPassword = $_POST['password']; // Введённый пароль
+        $enteredLogin = mysqli_real_escape_string($conn, $_POST['login']); // Введённый логин
+        $enteredPassword = mysqli_real_escape_string($conn, $_POST['password']); // Введённый пароль
         if(!isset($_POST['rememberMe'])) $rememberMe = false; // Если checkbox rememberMe не выбран
         else $rememberMe = true; // Если rememberMe checkbox выбран
         // Запрос на поиск пользователя вида "посетитель" с введённым логином или паролем

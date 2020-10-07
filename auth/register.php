@@ -5,10 +5,10 @@
     if(isset($_POST['signUp'])) {
         // Если все обязательные поля заполнены
         if(!empty($_POST['login_reg']) && !empty($_POST['password_reg']) && !empty($_POST['description_reg']) && !empty($_POST['name_reg'])) {
-            $login = $_POST['login_reg'];
-            $password = $_POST['password_reg'];
-            $description = $_POST['description_reg'];
-            $name = $_POST['name_reg'];
+            $login = mysqli_real_escape_string($conn, $_POST['login_reg']);
+            $password = mysqli_real_escape_string($conn, $_POST['password_reg']);
+            $description = mysqli_real_escape_string($conn, $_POST['description_reg']);
+            $name = mysqli_real_escape_string($conn, $_POST['name_reg']);
             $getUser_query = '
             SELECT * FROM visitor WHERE login = "'.$login.'"
             UNION
