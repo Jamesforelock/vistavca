@@ -33,12 +33,12 @@ if(isset($_POST['signIn'])) {
         $enteredPassword = mysqli_real_escape_string($conn, $_POST['password']); // Введённый пароль
         if(!isset($_POST['rememberMe'])) $rememberMe = false; // Если checkbox rememberMe не выбран
         else $rememberMe = true; // Если rememberMe checkbox выбран
-        // Запрос на поиск пользователя вида "посетитель" с введённым логином или паролем
+        // Запрос на поиск пользователя вида "посетитель" с введённым логином и паролем
         $getVisitor_query = '
     SELECT * FROM visitor WHERE login = "'.$enteredLogin.'" AND password = "'.$enteredPassword.'"
     ';
         $visitor = mysqli_query($conn, $getVisitor_query); // Осуществление запроса на получение пользователя вида "посетитель"
-        // Запрос на поиск пользователя вида "ассистент" с введённым логином или паролем
+        // Запрос на поиск пользователя вида "ассистент" с введённым логином и паролем
         $getAssistant_query = '
     SELECT * FROM assistant WHERE login = "'.$enteredLogin.'" AND password = "'.$enteredPassword.'"
     ';
