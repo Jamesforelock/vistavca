@@ -1,58 +1,63 @@
 <?php
-require "./components/universal/paginator.php";
-require "./components/content/articles/article.php";
-require "./components/content/people/human.php";
+require_once "./components/universal/paginator.php"; // Пагинатор для отображения номеров-ссылок страниц
+require_once "./components/content/articles/ArticlesRenderer.php"; // Рисовальщик для статей
+require_once "./components/content/people/PeopleRenderer.php"; // Рисовальщик для людей
 
-function renderData($conn, $itemsCount, $table, $currentPage) {
-    // Получение количества всех элементов и генерация количества страниц
+// Получает количество всех элементов в таблице
+function getAllItemsCount($conn, $table) {
     $query_getAllItemsCount = 'SELECT COUNT(*) FROM '.$table;
     $getAllItemsCount = mysqli_query($conn, $query_getAllItemsCount);
-    $allItemsCount = mysqli_fetch_array($getAllItemsCount)[0]; // Число всех элементов в БД
-    $pagesCount = ceil($allItemsCount / $itemsCount); // Число всех страниц
+    return mysqli_fetch_array($getAllItemsCount)[0]; // Число всех элементов в БД
+}
 
-    /*
+//  Возвращает число всех страниц при данном количестве всех элементов и количестве выводимых элементов на страницу
+function getPagesCount($allItemsCount, $itemsCount) {
+    return ceil($allItemsCount / $itemsCount); // Число всех страниц
+}
+
+/*
     Вывод всех элементов из таблицы БД производится с конца, поэтому на первой странице должны быть отображены
     самые последние элементы таблицы.
     Если $allItemsCount = 10, $itemsCount = 5, page = 2, то $lastItemId = 10 - 5 * (2 - 1) = 5
     Если $lastItemId = 5, $itemsCount = 5, то $firstItemId = 5 - 5 + 1 = 1
-    */
+*/
+function getFirstAndLastItemsId($allItemsCount, $itemsCount, $currentPage) {
     $lastItemId = $allItemsCount - $itemsCount * ($currentPage - 1); // ID последнего выводимого элемента на странице
     $firstItemId = $lastItemId - $itemsCount + 1; // ID первого выводимого элемента на странице
     if($firstItemId < 1) { // Проверка на случай, если на последней странице число элементов будет < $itemsCount
         $firstItemId = 1;
     }
 
-    // Получение записей из БД (Использование ORDER BY table.ID DESC переворачивает результат выборки с целью
-    // отображения самых актуальных данных сверху)
+    return array("first" => $firstItemId, "last" => $lastItemId);
+}
+
+// Получение записей из БД (Использование ORDER BY table.ID DESC переворачивает результат выборки с целью
+// отображения самых актуальных данных сверху)
+function getItems($conn, $table, $itemsId) {
+    $firstItemId = $itemsId["first"];
+    $lastItemId = $itemsId["last"];
     $query_getItems = 'SELECT * FROM '.$table.' WHERE '.$table.'.ID >= '.$firstItemId.' AND 
     '.$table.'.ID <='.$lastItemId.' ORDER BY '.$table.'.ID DESC';
-    $items = mysqli_query($conn, $query_getItems);
+    return $items = mysqli_query($conn, $query_getItems);
+}
 
-    if($table == "excursion" || $table == "stand") {
-        while ($item = mysqli_fetch_array($items)) {
-            Article($item['Name'], $item['Description'], 'assets/i/'.$table.'/' . $item['Picture'], $item['Date']);
-        }
-        Paginator($currentPage, $pagesCount, "index.php?section="."articles&type=".$table);
+// Отрисовка данных
+function renderData($conn, $itemsCount, $tableType, $table, $currentPage) {
+    $allItemsCount = getAllItemsCount($conn, $table); // Число всех элементов
+    $pagesCount = getPagesCount($allItemsCount, $itemsCount); // Количество всех страниц
+    $itemsId = getFirstAndLastItemsId($allItemsCount, $itemsCount, $currentPage); // ID первого и второго элементов
+    $items = getItems($conn, $table, $itemsId); // Получение элементов
+    switch ($tableType) {
+        case "articles": // Если рисуем статьи
+            $renderer = new ArticlesRenderer(); // Создаем экземпляр рисовальщика статей
+            break;
+        case "people": // Если рисуем людей
+            $renderer = new PeopleRenderer(); // Создаем экземпляр рисовальщика людей
+            break;
+        // Можем добавить ещё тип таблицы при условии если добавим соответствующий renderer
+        default:
+            $renderer = new ArticlesRenderer();
     }
-    elseif ($table == "visitor" || $table == "assistant") {
-        $itemsRowCount = 0;
-        echo '<div class="row">';
-        while ($item = mysqli_fetch_array($items)) {
-            if($itemsRowCount % 3 == 0 && $itemsRowCount != 0) { // Если число элементов делится нацело на 3, то закрываем строку и открываем новую
-                echo '
-                </div>
-                <div class="row">
-                ';
-            }
-            // Если у пользователя есть фото
-            if(isset($item['Picture'])) $picturePath = 'assets/i/'.$table.'/' . $item['Picture'];
-            // Если у пользователя нет фото
-            else $picturePath = 'assets/i/noPhoto.jpg';
-            Human($item['Name'], $item['Description'], $picturePath);
-            $itemsRowCount++;
-        }
-            echo '</div>'; // Закрываем строку
-        Paginator($currentPage, $pagesCount, "index.php?section="."people&type=".$table);
-    }
-
+    $renderer->render($items, $table, $currentPage, $pagesCount); // Рисуем элементы
+    Paginator($currentPage, $pagesCount, "index.php?section=$tableType&type=$table", 10); // Рисуем Paginator
 }

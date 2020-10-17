@@ -17,6 +17,7 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
     <?php
         require "./components/universal/dbConnector.php";
         $conn = connectToDb(); // Подключение к БД
+        $GLOBALS['conn'] = $conn;
         require "./auth/autologin.php";
     ?>
     <div class="container-fluid wrapper">

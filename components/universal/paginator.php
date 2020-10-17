@@ -6,27 +6,85 @@ function isActive($currentPage, $linkPageNumber) {
     }
     return "";
 }
-function Paginator($currentPage, $pagesCount, $baseAddress) {
-    echo ' <nav aria-label="Page navigation example" class="paginationContainer"> <ul class="pagination">';
-        if($currentPage!= 1) { // Вывод ссылки "назад", если текущая страница != номеру последней страницы
-            echo '
-            <li class="page-item">
-                <a class="page-link" href="'.$baseAddress.'&page='.($currentPage - 1).'" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>';
+
+function PageLink($pageNumber, $baseAddress, $isActive) { // Рисует номер-ссылку на страницу
+    echo '
+    <li class="page-item ' . ($isActive ? "active" : "") . '">
+        <a class="page-link" href="' . $baseAddress . '&page='.$pageNumber.'" aria-label="Previous">
+            <span aria-hidden="true">'.$pageNumber.'</span>
+        </a>
+    </li>
+    ';
+}
+
+function PageArrowLink($currentPage, $baseAddress, $type) { // Рисует стрелочную ссылку на след. (пред.) страницу
+    $arrow = "";
+    $pageNumber = 0;
+    switch ($type) {
+        case "LEFT":
+            $arrow = "<<";
+            $pageNumber = $currentPage - 1;
+            break;
+        case "RIGHT":
+            $arrow = ">>";
+            $pageNumber = $currentPage + 1;
+            break;
+    }
+    echo '
+    <li class="page-item">
+        <a class="page-link" href="' . $baseAddress . '&page=' . $pageNumber . '" aria-label="Previous">
+            <span aria-hidden="true">'.$arrow.'</span>
+        </a>
+    </li>
+    ';
+}
+
+function Ellipsis() { // Рисует многоточие
+    echo '
+    <li class="page-item active">
+        <a class="page-link" aria-label="Previous">
+            <span aria-hidden="true">...</span>
+        </a>
+    </li>';
+}
+
+function Paginator($currentPage, $pagesCount, $baseAddress, $linksCount) {
+    $pagesCount = 70;
+    if($pagesCount > 1) {
+        echo ' <nav aria-label="Page navigation example" class="paginationContainer"> <ul class="pagination">';
+        if ($currentPage != 1) { // Вывод ссылки "назад", если текущая страница != номеру последней страницы
+            PageArrowLink($currentPage, $baseAddress, "LEFT");
         }
-        for($i = 1; $i<=$pagesCount; $i++) { // Вывод всех номеров-ссылок страниц
-            echo '<li class="page-item '.isActive($currentPage, $i).'"><a class="page-link" href="'.$baseAddress.'&page='.$i.'">'.$i.'</a></li>';
+        // Вывод ссылки на первую страницу
+        PageLink(1, $baseAddress, isActive($currentPage, 1));
+        $isEllipsisLeft = false;
+        $isEllipsisRight = false;
+        for ($i = 2; $i <= $pagesCount-1; $i++) { // Вывод всех номеров-ссылок страниц
+            // Если рисуемый номер страницы - номер текущей страницы >= максимальному числу отображенных номеров страниц
+            if($i - $currentPage >= $linksCount) {
+                if(!$isEllipsisRight) { // Если ещё нет многоточия справа
+                    Ellipsis();
+                    $isEllipsisRight = true;
+                }
+                continue; // Номер страницы не рисуем
+            }
+            // Если номер текущей страницы - рисуемый номер страницы >= максимальному числу отображенных номеров страниц
+            if($currentPage - $i >= $linksCount){
+                if(!$isEllipsisLeft) { // Если ещё нет многоточия слева
+                    Ellipsis();
+                    $isEllipsisLeft = true;
+                }
+                continue; // Номер страницы не рисуем
+            }
+            PageLink($i, $baseAddress, isActive($currentPage, $i));
         }
-        if($currentPage != $pagesCount) { // Вывод стрелки "вперед", если текущая страница != числу всех страниц (номеру последней страницы)
-            echo '
-             <li class="page-item">
-                <a class="page-link" href="'.$baseAddress.'&page='.($currentPage+ 1).'"  aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-           ';
+        // Вывод ссылки на последнюю страницу
+        PageLink($pagesCount, $baseAddress, isActive($currentPage, $pagesCount));
+        if ($currentPage != $pagesCount) { // Вывод стрелки "вперед", если текущая страница != числу всех страниц (номеру последней страницы)
+            PageArrowLink($currentPage, $baseAddress, "RIGHT");
         }
         echo '</ul></nav>';
+
+
+    }
 }

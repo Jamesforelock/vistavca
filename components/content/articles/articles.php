@@ -1,6 +1,7 @@
 <div class="articles container">
     <?php
         require "components/content/dataConnector.php";
+        $conn = $GLOBALS['conn'];
         if(isset($_GET['type'])) { // Проверяем, установлен ли тип статей
             $sectionType = $_GET['type'];
         }
@@ -17,7 +18,7 @@
             case 'excursion': // Если тип статей - экскурсии
                 echo '<h1>Excursions</h1>
                  <p>Here you can see our nice Excursions</p>';
-                renderData($conn, 5, "excursion", $currentPage);
+                renderData($conn, 5, "articles", "excursion", $currentPage);
                 break;
             case 'stand': // Если тип статей - стенды
                 echo '<h1>Stands</h1>
@@ -25,7 +26,7 @@
                 adipisci temporibus corrupti similique expedita placeat aut sed necessitatibus praesentium, veritatis,
                 dignissimos neque nisi consequatur?Earum nemo aperiam aspernatur sint assumenda ea. Nobis fugiat quia cupiditate
                 odio eius hic earum, atque sit quas ut quae enim ad vero, omnis molestiae tempora rerum harum voluptas delectus.</p>';
-                renderData($conn, 5, "stand", $currentPage);
+                renderData($conn, 5, "articles", "stand", $currentPage);
                 break;
         }
     ?>
