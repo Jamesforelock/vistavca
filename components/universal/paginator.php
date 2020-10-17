@@ -49,7 +49,6 @@ function Ellipsis() { // Рисует многоточие
 }
 
 function Paginator($currentPage, $pagesCount, $baseAddress, $linksCount) {
-    $pagesCount = 70;
     if($pagesCount > 1) {
         echo ' <nav aria-label="Page navigation example" class="paginationContainer"> <ul class="pagination">';
         if ($currentPage != 1) { // Вывод ссылки "назад", если текущая страница != номеру последней страницы
