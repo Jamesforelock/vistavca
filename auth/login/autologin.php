@@ -14,7 +14,7 @@ function setSessionData ($user, $userType) {
 
 if(!isset($_SESSION['login'])) { // Если в сессии не устрановлен login
     if(isset($_COOKIE['hash'])) { // Если в куках есть hash
-        $hash = mysqli_real_escape_string($_COOKIE['hash']); // Получение значения hash
+        $hash = mysqli_real_escape_string($conn, $_COOKIE['hash']); // Получение значения hash
         $getUser_query = 'SELECT * FROM hu WHERE hash = "'.$hash.'"';
         $user = mysqli_query($conn, $getUser_query); // Получение пользователя из таблицы hu
         if(mysqli_num_rows($user) != 0) { // Если количество найденных по хэшу строк с пользователями != 0

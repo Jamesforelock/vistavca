@@ -5,8 +5,11 @@
             <div class="col">
                 <a href="../index.php" class="backLink">Back</a>
                 <h1>Registration</h1>
-                <form method="POST">
-                    <?php require "register.php"?>
+                <form enctype="multipart/form-data" method="POST">
+                    <?php require "register/register.php" ?>
+                    <div class="form-group">
+                        <input name="picture" type="file" />
+                    </div>
                     <div class="form-group">
                         <input name="login_reg" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your login">
                     </div>
@@ -31,7 +34,7 @@
                 </form>
                 <hr>
                 <p>Already have an account?</p>
-                <a href="auth.php" class="btn btn-success secondaryBtn">Login</a>
+                <a href="../auth.php" class="btn btn-success secondaryBtn">Login</a>
             </div>
         </div>
     </div>

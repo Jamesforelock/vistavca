@@ -1,4 +1,5 @@
 <?php
+// Компонент одного человека
 function Human($name, $description, $picturePath) {
     echo '
         <div class="col human">

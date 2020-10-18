@@ -1,4 +1,5 @@
 <?php
+// Компонент одной статьи
 function Article($title, $description, $picturePath, $date) {
     echo '
     <div class="card mb-3 article">

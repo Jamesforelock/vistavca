@@ -7,6 +7,22 @@ if(isset($_SESSION['login'])) {
     header("Location: ../index.php");
     end;
 }
+
+// Возвращает true, если в строке нет некорректных символов
+function isCorrectSymbols($formData) {
+    $incorrectSymbols = array(">", "<", "'", '"', "&", ",", "?", "!", "@", "#", "*", "(", ")", "%", "$", ".", "#",
+        "№", ":", ";", "^", "`", "~", "\\", "|", "/", "+", "-");
+    foreach ($formData as $enteredText) {
+        $arrEnteredText = str_split($enteredText);
+        foreach ($incorrectSymbols as $symbol) {
+            if(in_array($symbol, $arrEnteredText)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,10 +38,10 @@ if(isset($_SESSION['login'])) {
 <body>
 <?php
 if(isset($_GET['section']) && $_GET['section'] === 'register') {
-    require 'registerForm.php';
+    require 'register/registerForm.php';
 }
 else {
-    require 'loginForm.php';
+    require 'login/loginForm.php';
 }
 ?>
 <script src="../scripts/auth.js"></script>

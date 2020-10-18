@@ -3,7 +3,7 @@ require_once "./components/universal/paginator.php"; // Пагинатор дл�
 require_once "./components/content/articles/ArticlesRenderer.php"; // Рисовальщик для статей
 require_once "./components/content/people/PeopleRenderer.php"; // Рисовальщик для людей
 
-// Получает количество всех элементов в таблице
+// Возвращает количество всех элементов в таблице
 function getAllItemsCount($conn, $table) {
     $query_getAllItemsCount = 'SELECT COUNT(*) FROM '.$table;
     $getAllItemsCount = mysqli_query($conn, $query_getAllItemsCount);
@@ -15,6 +15,7 @@ function getPagesCount($allItemsCount, $itemsCount) {
     return ceil($allItemsCount / $itemsCount); // Число всех страниц
 }
 
+// Возвращает массив, состоящий из id первого и последнего элементов текущей страницы
 /*
     Вывод всех элементов из таблицы БД производится с конца, поэтому на первой странице должны быть отображены
     самые последние элементы таблицы.
@@ -31,7 +32,7 @@ function getFirstAndLastItemsId($allItemsCount, $itemsCount, $currentPage) {
     return array("first" => $firstItemId, "last" => $lastItemId);
 }
 
-// Получение записей из БД (Использование ORDER BY table.ID DESC переворачивает результат выборки с целью
+// Возвращает записи из БД (Использование ORDER BY table.ID DESC переворачивает результат выборки с целью
 // отображения самых актуальных данных сверху)
 function getItems($conn, $table, $itemsId) {
     $firstItemId = $itemsId["first"];
@@ -59,5 +60,6 @@ function renderData($conn, $itemsCount, $tableType, $table, $currentPage) {
             $renderer = new ArticlesRenderer();
     }
     $renderer->render($items, $table, $currentPage, $pagesCount); // Рисуем элементы
-    Paginator($currentPage, $pagesCount, "index.php?section=$tableType&type=$table", 10); // Рисуем Paginator
+    // Рисуем Paginator
+    Paginator($currentPage, $pagesCount, "index.php?section=$tableType&type=$table", 10);
 }

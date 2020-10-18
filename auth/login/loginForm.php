@@ -6,7 +6,7 @@
                 <a href="../index.php" class="backLink">Back</a>
                 <h1>Login</h1>
                 <form method="POST">
-                    <?php require "login.php"?>
+                    <?php require "login/login.php" ?>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Your login</label>
                         <input name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -23,7 +23,7 @@
                 </form>
                 <hr>
                 <p>Is this your first time with us?</p>
-                <a href="auth.php?section=register" class="btn btn-primary secondaryBtn">Sign Up</a>
+                <a href="./auth.php?section=register" class="btn btn-primary secondaryBtn">Sign Up</a>
             </div>
         </div>
     </div>

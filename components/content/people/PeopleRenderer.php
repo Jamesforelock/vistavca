@@ -9,7 +9,8 @@ class PeopleRenderer extends Renderer {
         $itemsRowCount = 0;
         echo '<div class="row">';
         while ($item = mysqli_fetch_array($items)) {
-            if($itemsRowCount % 3 == 0 && $itemsRowCount != 0) { // Если число элементов делится нацело на 3, то закрываем строку и открываем новую
+            // Если число элементов делится нацело на 3, то закрываем строку и открываем новую
+            if($itemsRowCount % 3 == 0 && $itemsRowCount != 0) {
                 echo '
                 </div>
                 <div class="row">

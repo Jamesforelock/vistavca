@@ -1,5 +1,6 @@
 <?php
-// Функция для задания класса active номеру страницы в случае, если номер текущей страницы == номеру-ссылки рассматриваемой страницы
+// Функция для задания класса active номеру страницы в случае,
+// если номер текущей страницы == номеру-ссылки рассматриваемой страницы
 function isActive($currentPage, $linkPageNumber) {
     if ($currentPage == $linkPageNumber){
         return "active";
@@ -59,7 +60,8 @@ function Paginator($currentPage, $pagesCount, $baseAddress, $linksCount) {
         $isEllipsisLeft = false;
         $isEllipsisRight = false;
         for ($i = 2; $i <= $pagesCount-1; $i++) { // Вывод всех номеров-ссылок страниц
-            // Если рисуемый номер страницы - номер текущей страницы >= максимальному числу отображенных номеров страниц
+            // Если рисуемый номер страницы - номер текущей страницы >= максимальному числу отображенных
+            // номеров страниц
             if($i - $currentPage >= $linksCount) {
                 if(!$isEllipsisRight) { // Если ещё нет многоточия справа
                     Ellipsis();
@@ -67,7 +69,8 @@ function Paginator($currentPage, $pagesCount, $baseAddress, $linksCount) {
                 }
                 continue; // Номер страницы не рисуем
             }
-            // Если номер текущей страницы - рисуемый номер страницы >= максимальному числу отображенных номеров страниц
+            // Если номер текущей страницы - рисуемый номер страницы >= максимальному числу отображенных
+            // номеров страниц
             if($currentPage - $i >= $linksCount){
                 if(!$isEllipsisLeft) { // Если ещё нет многоточия слева
                     Ellipsis();
@@ -79,7 +82,8 @@ function Paginator($currentPage, $pagesCount, $baseAddress, $linksCount) {
         }
         // Вывод ссылки на последнюю страницу
         PageLink($pagesCount, $baseAddress, isActive($currentPage, $pagesCount));
-        if ($currentPage != $pagesCount) { // Вывод стрелки "вперед", если текущая страница != числу всех страниц (номеру последней страницы)
+        // Вывод стрелки "вперед", если текущая страница != числу всех страниц (номеру последней страницы)
+        if ($currentPage != $pagesCount) {
             PageArrowLink($currentPage, $baseAddress, "RIGHT");
         }
         echo '</ul></nav>';

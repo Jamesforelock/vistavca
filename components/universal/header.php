@@ -19,7 +19,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">My Profile</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="./auth/logout.php">Log out</a>
+                    <a class="dropdown-item" href="./auth/login/logout.php">Log out</a>
                 </div>
                     ';
                 }

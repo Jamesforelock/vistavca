@@ -1,5 +1,5 @@
 <?php
-    require "../components/universal/dbConnector.php";
+    require "../../components/universal/dbConnector.php";
     session_start(); // Запуск сессии
     session_unset(); // Удаление всех значений из сессии
     session_destroy(); // Уничтожение сессии
@@ -12,5 +12,5 @@
             setcookie("hash", "", time()-3600, "/"); // Удаление хеша из куков
         }
    }
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     end;
