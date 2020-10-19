@@ -15,7 +15,8 @@ $pictureName = $_SESSION['picture'];
 ?>
 
 <div class="profile container">
-    <h1 class="profile__title profile__title_red">Your personal account</h1>
+    <h1 class="profile__title">Profile</h1>
+    <hr>
     <div class="profileInfo">
         <?php MainInfo($login, $name, $userType, $description, $pictureName);?>
         <hr class="profileInfo__divider">

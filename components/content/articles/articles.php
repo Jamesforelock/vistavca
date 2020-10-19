@@ -1,6 +1,7 @@
 <div class="articles container">
     <?php
         require "components/content/dataConnector.php";
+        require_once "components/universal/intro.php";
         $conn = $GLOBALS['conn'];
         if(isset($_GET['type'])) { // Проверяем, установлен ли тип статей
             $sectionType = $_GET['type'];
@@ -16,18 +17,17 @@
         }
         switch ($sectionType) {
             case 'excursion': // Если тип статей - экскурсии
-                echo '<h1>Excursions</h1>
-                 <p>Here you can see our nice Excursions</p>';
+                Intro("Excursions", "Here you can see our nice Excursions");
                 renderData($conn, 5, "articles", "excursion", $currentPage);
                 break;
             case 'stand': // Если тип статей - стенды
-                echo '<h1>Stands</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non nulla at corporis assumenda iusto nostrum
-                adipisci temporibus corrupti similique expedita placeat aut sed necessitatibus praesentium, veritatis,
-                dignissimos neque nisi consequatur?Earum nemo aperiam aspernatur sint assumenda ea. Nobis fugiat quia cupiditate
-                odio eius hic earum, atque sit quas ut quae enim ad vero, omnis molestiae tempora rerum harum voluptas delectus.</p>';
+                Intro("Stands", "Here you can see our nice Stands");
                 renderData($conn, 5, "articles", "stand", $currentPage);
                 break;
         }
     ?>
+    <script>
+        let articles = document.getElementsByClassName("articles")[0]
+        smoothAppear(articles)
+    </script>
 </div>

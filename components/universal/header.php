@@ -2,7 +2,8 @@
     <div class="container">
     <div class="row justify-content-between align-items-center">
         <div class="logo">
-            <span class="logo__name">VISTAVCA</span>
+            <span class="logo__name">PRISM</span>
+            <span class="logo__subtitle">master of your eyes</span>
         </div>
         <nav class="nav">
             <a href="./index.php?section=articles&type=stand" class="nav__link">Stands</a>

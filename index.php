@@ -11,7 +11,8 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
     <link rel="stylesheet" href="./styles/fontawesome/css/all.css?v=<?php echo $timestamp;?>">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css?v=<?php echo $timestamp;?>" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css?v=<?php echo $timestamp;?>">
-    <title>Vistavca</title>
+    <title>PRISM</title>
+    <script src="./scripts/smoothAppear.js"></script>
 </head>
 <body>
     <?php
@@ -20,15 +21,20 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
         $GLOBALS['conn'] = $conn;
         require "./auth/login/autologin.php";
     ?>
-    <div class="container-fluid wrapper">
-        <?php
-            include "./components/universal/header.php"
-        ?>
-        <main class="content">
+    <div class="wrapper">
+        <div class="container-fluid">
             <?php
-                include "./components/content/content.php"
+            include "./components/universal/header.php"
             ?>
-        </main>
+        </div>
+        <?php include_once "./components/universal/imageRow.php" ?>
+        <div class="container-fluid">
+            <main class="content">
+                <?php
+                include "./components/content/content.php"
+                ?>
+            </main>
+        </div>
     </div>
     <?php
         include "./components/universal/footer.php"

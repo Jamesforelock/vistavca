@@ -1,6 +1,7 @@
 <div class="div people container">
     <?php
     require "components/content/dataConnector.php";
+    require_once "components/universal/intro.php";
     $conn = $GLOBALS['conn'];
     if(isset($_GET['type'])) { // Проверяем, установлен ли тип отображаемых людей
         $sectionType = $_GET['type'];
@@ -16,18 +17,17 @@
     }
     switch ($sectionType) {
         case 'visitor': // Если тип статей - экскурсии
-            echo '<h1>Visitors</h1>
-                 <p>Here you can see our nice Visitors</p>';
+            Intro("Visitors", "Here you can see our nice Visitors");
             renderData($conn,6, "people", "visitor", $currentPage);
             break;
         case 'assistant': // Если тип статей - стенды
-            echo '<h1>Assistants</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non nulla at corporis assumenda iusto nostrum
-                adipisci temporibus corrupti similique expedita placeat aut sed necessitatibus praesentium, veritatis,
-                dignissimos neque nisi consequatur?Earum nemo aperiam aspernatur sint assumenda ea. Nobis fugiat quia cupiditate
-                odio eius hic earum, atque sit quas ut quae enim ad vero, omnis molestiae tempora rerum harum voluptas delectus.</p>';
+            Intro("Assistants", "Here you can see our nice Assistants");
             renderData($conn, 6, "people", "assistant", $currentPage);
             break;
     }
     ?>
+    <script>
+        let people = document.getElementsByClassName("people")[0]
+        smoothAppear(people)
+    </script>
 </div>
