@@ -17,7 +17,7 @@
                     '.$_SESSION['name'].' ('.$_SESSION['type'].')
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="./index.php?section=profile">My Profile</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="./auth/login/logout.php">Log out</a>
                 </div>
@@ -25,7 +25,7 @@
                 }
                 else {
                     echo '
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Profile
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
