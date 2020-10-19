@@ -10,8 +10,8 @@ if(isset($_SESSION['login'])) {
 
 // Возвращает true, если в строке нет некорректных символов
 function isCorrectSymbols($formData) {
-    $incorrectSymbols = array(">", "<", "'", '"', "&", ",", "?", "!", "@", "#", "*", "(", ")", "%", "$", ".", "#",
-        "№", ":", ";", "^", "`", "~", "\\", "|", "/", "+", "-");
+    $incorrectSymbols = array(">", "<", "'", '"', "&", "@", "#", "*", "(", ")", "%", "$", "#",
+        "№", "^", "`", "~", "\\", "|", "/", "+", "-");
     foreach ($formData as $enteredText) {
         $arrEnteredText = str_split($enteredText);
         foreach ($incorrectSymbols as $symbol) {
