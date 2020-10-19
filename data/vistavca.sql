@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Окт 04 2020 г., 12:54
--- Версия сервера: 10.4.14-MariaDB
--- Версия PHP: 7.2.33
+-- Host: 127.0.0.1
+-- Generation Time: Oct 19, 2020 at 04:25 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `vistavca`
+-- Database: `vistavca`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `assistant`
+-- Table structure for table `assistant`
 --
 
 CREATE TABLE `assistant` (
@@ -33,11 +33,11 @@ CREATE TABLE `assistant` (
   `Password` varchar(100) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Description` text NOT NULL,
-  `Picture` varchar(25) DEFAULT NULL
+  `Picture` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Дамп данных таблицы `assistant`
+-- Dumping data for table `assistant`
 --
 
 INSERT INTO `assistant` (`ID`, `Login`, `Password`, `Name`, `Description`, `Picture`) VALUES
@@ -46,13 +46,12 @@ INSERT INTO `assistant` (`ID`, `Login`, `Password`, `Name`, `Description`, `Pict
 (3, 'sandylong', 'sandy12345', 'Sandy Long', 'This woman reminds you of a playful dolphin. She has wide orange eyes that are like two setting suns. Her luxurious, curly, amber hair is neck-length and is worn in an uncomplicated, dignified style. She has a narrow build. Her skin is china-white. She has prominent cheekbones. Her wardrobe is severe, with a lot of green and black.', '03.jpg'),
 (4, 'bryanland', 'bryan12345', 'Bryan Land', 'This sensitive man has narrow orange eyes. His thick, curly, brown hair is worn in a style that reminds you of a mysterious mask. He has a narrow build. His skin is deeply-tanned. He has a high forehead and small feet. His wardrobe is strange and impractacal, with a mostly white and brown color scheme.', '04.jpg'),
 (5, 'samsandman', 'sam12345', 'Sam Sandman', 'This gentleman puts you in mind of a savvy alley cat. He has hooded indigo eyes. His thick, straight, cobalt-blue hair is worn in a style that reminds you of a tangled bush. He has an athletic build. His skin is black. He has prominent cheekbones and prominent ears. His wardrobe is revealing and unusual, with a mostly red and black color scheme.', '05.jpg'),
-(6, 'kevinblack', 'kevin12345', 'Kevin Black', 'This friendly man has beady yellow eyes that are like two chunks of agend ivory. His fine, wavy, obsidian hair is worn in a style that reminds you of a sea urchin. He has an overmuscled build. His skin is china-white. He has an elegant nose and large hands. His wardrobe is elegant and mysterious, with a mostly gray and orange color scheme.', '06.jpg'),
-(7, 'johnnewman', 'john12345', 'John Newman', 'Hey, I\'m a newbie', NULL);
+(6, 'kevinblack', 'kevin12345', 'Kevin Black', 'This friendly man has beady yellow eyes that are like two chunks of agend ivory. His fine, wavy, obsidian hair is worn in a style that reminds you of a sea urchin. He has an overmuscled build. His skin is china-white. He has an elegant nose and large hands. His wardrobe is elegant and mysterious, with a mostly gray and orange color scheme.', '06.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `ev`
+-- Table structure for table `ev`
 --
 
 CREATE TABLE `ev` (
@@ -62,7 +61,7 @@ CREATE TABLE `ev` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `excursion`
+-- Table structure for table `excursion`
 --
 
 CREATE TABLE `excursion` (
@@ -74,7 +73,7 @@ CREATE TABLE `excursion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Дамп данных таблицы `excursion`
+-- Dumping data for table `excursion`
 --
 
 INSERT INTO `excursion` (`ID`, `Name`, `Description`, `Date`, `Picture`) VALUES
@@ -88,7 +87,7 @@ INSERT INTO `excursion` (`ID`, `Name`, `Description`, `Date`, `Picture`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `hu`
+-- Table structure for table `hu`
 --
 
 CREATE TABLE `hu` (
@@ -100,7 +99,7 @@ CREATE TABLE `hu` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `sa`
+-- Table structure for table `sa`
 --
 
 CREATE TABLE `sa` (
@@ -110,7 +109,7 @@ CREATE TABLE `sa` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `se`
+-- Table structure for table `se`
 --
 
 CREATE TABLE `se` (
@@ -120,7 +119,7 @@ CREATE TABLE `se` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `stand`
+-- Table structure for table `stand`
 --
 
 CREATE TABLE `stand` (
@@ -132,7 +131,7 @@ CREATE TABLE `stand` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Дамп данных таблицы `stand`
+-- Dumping data for table `stand`
 --
 
 INSERT INTO `stand` (`ID`, `Name`, `Description`, `Date`, `Picture`) VALUES
@@ -147,7 +146,7 @@ INSERT INTO `stand` (`ID`, `Name`, `Description`, `Date`, `Picture`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `visitor`
+-- Table structure for table `visitor`
 --
 
 CREATE TABLE `visitor` (
@@ -156,11 +155,11 @@ CREATE TABLE `visitor` (
   `Password` varchar(100) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Description` text NOT NULL,
-  `Picture` varchar(25) DEFAULT NULL
+  `Picture` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Дамп данных таблицы `visitor`
+-- Dumping data for table `visitor`
 --
 
 INSERT INTO `visitor` (`ID`, `Login`, `Password`, `Name`, `Description`, `Picture`) VALUES
@@ -173,89 +172,89 @@ INSERT INTO `visitor` (`ID`, `Login`, `Password`, `Name`, `Description`, `Pictur
 (7, 'janenear', 'jane12345', 'Jane Near', 'This lady reminds you of an unstoppable hunting dog. She has round scarlet eyes. Her silky, straight, green hair is very long and is worn in a precise, utilitarian style. She is very short and has an elegant build. Her skin is deeply-tanned. She has a high forehead. Her wardrobe is artistic.', '07.jpg'),
 (8, 'peggycat', 'peggy12345', 'Peggy Cat', 'This gentleman puts you in mind of a savvy alley cat. He has hooded indigo eyes. His thick, straight, cobalt-blue hair is worn in a style that reminds you of a tangled bush. He has an athletic build. His skin is black. He has prominent cheekbones and prominent ears. His wardrobe is revealing and unusual, with a mostly red and black color scheme.', '08.jpg'),
 (9, 'bentear', 'ben12345', 'Ben Tear', 'This friendly man has beady yellow eyes that are like two chunks of agend ivory. His fine, wavy, obsidian hair is worn in a style that reminds you of a sea urchin. He has an overmuscled build. His skin is china-white. He has an elegant nose and large hands. His wardrobe is elegant and mysterious, with a mostly gray and orange color scheme.', '09.jpg'),
-(10, 'newone', 'new12345', 'Peggy Linkoln', 'Glad to see you', NULL);
+(10, 'denis', '$2y$10$myb.luiGfjfq0Ytiy/a6MeghsO9uNDGC0W/STvqbH9cA.bX6Q14Pi', 'Denis', 'Get away from me!', '067cbbd43ebf8749faa39082e237f03f_01.jpg');
 
 --
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `assistant`
+-- Indexes for table `assistant`
 --
 ALTER TABLE `assistant`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Login` (`Login`);
 
 --
--- Индексы таблицы `ev`
+-- Indexes for table `ev`
 --
 ALTER TABLE `ev`
   ADD PRIMARY KEY (`PK`);
 
 --
--- Индексы таблицы `excursion`
+-- Indexes for table `excursion`
 --
 ALTER TABLE `excursion`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `hu`
+-- Indexes for table `hu`
 --
 ALTER TABLE `hu`
   ADD PRIMARY KEY (`hash`),
   ADD KEY `user_ID` (`user_ID`);
 
 --
--- Индексы таблицы `sa`
+-- Indexes for table `sa`
 --
 ALTER TABLE `sa`
   ADD PRIMARY KEY (`PK`);
 
 --
--- Индексы таблицы `se`
+-- Indexes for table `se`
 --
 ALTER TABLE `se`
   ADD PRIMARY KEY (`PK`);
 
 --
--- Индексы таблицы `stand`
+-- Indexes for table `stand`
 --
 ALTER TABLE `stand`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `visitor`
+-- Indexes for table `visitor`
 --
 ALTER TABLE `visitor`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблицы `assistant`
+-- AUTO_INCREMENT for table `assistant`
 --
 ALTER TABLE `assistant`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT для таблицы `excursion`
+-- AUTO_INCREMENT for table `excursion`
 --
 ALTER TABLE `excursion`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT для таблицы `stand`
+-- AUTO_INCREMENT for table `stand`
 --
 ALTER TABLE `stand`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT для таблицы `visitor`
+-- AUTO_INCREMENT for table `visitor`
 --
 ALTER TABLE `visitor`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
