@@ -2,6 +2,7 @@
     <?php
         require "components/content/dataConnector.php";
         require_once "components/universal/intro.php";
+        require_once "components/content/articles/ArticlesRenderer.php";
         $conn = $GLOBALS['conn'];
         if(isset($_GET['type'])) { // Проверяем, установлен ли тип статей
             $sectionType = $_GET['type'];
@@ -18,11 +19,11 @@
         switch ($sectionType) {
             case 'excursion': // Если тип статей - экскурсии
                 Intro("Excursions", "Here you can see our nice Excursions");
-                renderData($conn, 5, "articles", "excursion", $currentPage);
+                renderData($conn, 5, new ArticlesRenderer(), "excursion", $currentPage);
                 break;
             case 'stand': // Если тип статей - стенды
                 Intro("Stands", "Here you can see our nice Stands");
-                renderData($conn, 5, "articles", "stand", $currentPage);
+                renderData($conn, 5, new ArticlesRenderer(), "stand", $currentPage);
                 break;
         }
     ?>

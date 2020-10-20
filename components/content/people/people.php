@@ -2,6 +2,7 @@
     <?php
     require "components/content/dataConnector.php";
     require_once "components/universal/intro.php";
+    require_once "components/content/people/PeopleRenderer.php";
     $conn = $GLOBALS['conn'];
     if(isset($_GET['type'])) { // Проверяем, установлен ли тип отображаемых людей
         $sectionType = $_GET['type'];
@@ -18,11 +19,11 @@
     switch ($sectionType) {
         case 'visitor': // Если тип статей - экскурсии
             Intro("Visitors", "Here you can see our nice Visitors");
-            renderData($conn,6, "people", "visitor", $currentPage);
+            renderData($conn,6, new PeopleRenderer(), "visitor", $currentPage);
             break;
         case 'assistant': // Если тип статей - стенды
             Intro("Assistants", "Here you can see our nice Assistants");
-            renderData($conn, 6, "people", "assistant", $currentPage);
+            renderData($conn, 6, new PeopleRenderer(), "assistant", $currentPage);
             break;
     }
     ?>

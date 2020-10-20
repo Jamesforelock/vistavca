@@ -6,10 +6,14 @@ require_once "./components/content/Renderer.php";
 // Рисовальщик статей на текущей странице
 class ArticlesRenderer extends Renderer {
     public function render($items, $table, $currentPage, $pagesCount) {
-        while ($item = mysqli_fetch_array($items)) {
+        $items = parent::reverseMySqlRes($items);
+        foreach ($items as $item) {
             Article($item['Name'], $item['Description'], 'assets/i/' . $table . '/' . $item['Picture'],
                 $item['Date']);
         }
+    }
+    public function getTableType() {
+        return "articles";
     }
 }
 
