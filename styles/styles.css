@@ -123,7 +123,6 @@ a:hover {
 }
 .header .nav {
   padding-top: 10px;
-  min-width: 500px;
   display: flex;
 }
 .header .nav__link {
@@ -235,6 +234,11 @@ a:hover {
   background-color: white;
   color: #2e2e2e;
 }
+@media screen and (max-width: 760px) {
+  .profile {
+    padding: 15px 0;
+  }
+}
 .profile__title {
   display: flex;
   font-size: 35px;
@@ -254,6 +258,13 @@ a:hover {
   padding-bottom: 15px;
   display: flex;
   align-items: flex-start;
+}
+@media screen and (max-width: 760px) {
+  .profile .profileInfo .mainInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }
 .profile .profileInfo .mainInfo__avatar {
   width: 300px;
@@ -298,8 +309,8 @@ a:hover {
 }
 
 .footer {
-  height: 250px;
-  padding: 15px 0;
+  min-height: 250px;
+  padding: 30px 0;
   background-color: #2e2e2e;
   color: white;
 }
