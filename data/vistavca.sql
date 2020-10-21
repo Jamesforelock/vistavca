@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2020 at 04:25 PM
+-- Generation Time: Oct 21, 2020 at 04:13 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -46,7 +46,8 @@ INSERT INTO `assistant` (`ID`, `Login`, `Password`, `Name`, `Description`, `Pict
 (3, 'sandylong', 'sandy12345', 'Sandy Long', 'This woman reminds you of a playful dolphin. She has wide orange eyes that are like two setting suns. Her luxurious, curly, amber hair is neck-length and is worn in an uncomplicated, dignified style. She has a narrow build. Her skin is china-white. She has prominent cheekbones. Her wardrobe is severe, with a lot of green and black.', '03.jpg'),
 (4, 'bryanland', 'bryan12345', 'Bryan Land', 'This sensitive man has narrow orange eyes. His thick, curly, brown hair is worn in a style that reminds you of a mysterious mask. He has a narrow build. His skin is deeply-tanned. He has a high forehead and small feet. His wardrobe is strange and impractacal, with a mostly white and brown color scheme.', '04.jpg'),
 (5, 'samsandman', 'sam12345', 'Sam Sandman', 'This gentleman puts you in mind of a savvy alley cat. He has hooded indigo eyes. His thick, straight, cobalt-blue hair is worn in a style that reminds you of a tangled bush. He has an athletic build. His skin is black. He has prominent cheekbones and prominent ears. His wardrobe is revealing and unusual, with a mostly red and black color scheme.', '05.jpg'),
-(6, 'kevinblack', 'kevin12345', 'Kevin Black', 'This friendly man has beady yellow eyes that are like two chunks of agend ivory. His fine, wavy, obsidian hair is worn in a style that reminds you of a sea urchin. He has an overmuscled build. His skin is china-white. He has an elegant nose and large hands. His wardrobe is elegant and mysterious, with a mostly gray and orange color scheme.', '06.jpg');
+(6, 'kevinblack', 'kevin12345', 'Kevin Black', 'This friendly man has beady yellow eyes that are like two chunks of agend ivory. His fine, wavy, obsidian hair is worn in a style that reminds you of a sea urchin. He has an overmuscled build. His skin is china-white. He has an elegant nose and large hands. His wardrobe is elegant and mysterious, with a mostly gray and orange color scheme.', '06.jpg'),
+(15, 'alex', '$2y$10$UD13uSCIa6vYW0fRL5z02.tNuc96NWWgiEkOmuyQ8lHJCzPeJXuwm', 'Alexander Khoperskov', 'Хм, квантовые частицы...', '3f0ad6eabe6b6baed97864b7efd7e36b_YilecrE1XeQ.jpg');
 
 -- --------------------------------------------------------
 
@@ -55,7 +56,9 @@ INSERT INTO `assistant` (`ID`, `Login`, `Password`, `Name`, `Description`, `Pict
 --
 
 CREATE TABLE `ev` (
-  `PK` set('Excursion_ID','Visitor_ID') NOT NULL
+  `ID` int(11) NOT NULL,
+  `Excursion_ID` int(11) NOT NULL,
+  `Visitor_Login` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -140,8 +143,7 @@ INSERT INTO `stand` (`ID`, `Name`, `Description`, `Date`, `Picture`) VALUES
 (3, 'Patton Museum Fort Knox', 'It\'s just a horse, no more. Heh!', '2020-09-27 18:47:10', '03.png'),
 (4, 'Artifact Exhibit', 'Some trash is available to your eyes', '2020-09-27 18:47:10', '04.png'),
 (5, 'Museum Hanging Systems', 'Wall space, an important area for museums, is where many valuable pieces of art are displayed. This is why museum hanging systems are very important. One system they use is a “track system”. This system allows them to display artwork and move the pieces around without constantly repairing the walls. Other systems are stationary and may include security hangers. ArtDisplay.com has been supplying these systems to museums for many years. Wall mounting options for odd shaped artwork or special pieces can be custom made. 10-31.com has been making custom wall mounts and displays for over 25 years.', '2020-09-27 18:47:10', '05.png'),
-(6, 'Museum Rails', 'Both MuseumRails and MuseumSigns offer a wide variety of solutions for displaying information to visitors and guests. From the simple and sleek options available through MuseumSigns to the customizable flexibility of MuseumRails’ modular system, there is something for any type of information display need.', '2020-09-27 18:47:10', '06.png'),
-(7, 'Museum Retractable Barriers', 'This is just a carriage, in case you don\'t get it.', '2020-09-27 18:47:10', '07.png');
+(6, 'Museum Rails', 'Both MuseumRails and MuseumSigns offer a wide variety of solutions for displaying information to visitors and guests. From the simple and sleek options available through MuseumSigns to the customizable flexibility of MuseumRails’ modular system, there is something for any type of information display need.', '2020-09-27 18:47:10', '06.png');
 
 -- --------------------------------------------------------
 
@@ -172,7 +174,8 @@ INSERT INTO `visitor` (`ID`, `Login`, `Password`, `Name`, `Description`, `Pictur
 (7, 'janenear', 'jane12345', 'Jane Near', 'This lady reminds you of an unstoppable hunting dog. She has round scarlet eyes. Her silky, straight, green hair is very long and is worn in a precise, utilitarian style. She is very short and has an elegant build. Her skin is deeply-tanned. She has a high forehead. Her wardrobe is artistic.', '07.jpg'),
 (8, 'peggycat', 'peggy12345', 'Peggy Cat', 'This gentleman puts you in mind of a savvy alley cat. He has hooded indigo eyes. His thick, straight, cobalt-blue hair is worn in a style that reminds you of a tangled bush. He has an athletic build. His skin is black. He has prominent cheekbones and prominent ears. His wardrobe is revealing and unusual, with a mostly red and black color scheme.', '08.jpg'),
 (9, 'bentear', 'ben12345', 'Ben Tear', 'This friendly man has beady yellow eyes that are like two chunks of agend ivory. His fine, wavy, obsidian hair is worn in a style that reminds you of a sea urchin. He has an overmuscled build. His skin is china-white. He has an elegant nose and large hands. His wardrobe is elegant and mysterious, with a mostly gray and orange color scheme.', '09.jpg'),
-(10, 'denis', '$2y$10$myb.luiGfjfq0Ytiy/a6MeghsO9uNDGC0W/STvqbH9cA.bX6Q14Pi', 'Denis', 'Get away from me!', '067cbbd43ebf8749faa39082e237f03f_01.jpg');
+(10, 'denis', '$2y$10$myb.luiGfjfq0Ytiy/a6MeghsO9uNDGC0W/STvqbH9cA.bX6Q14Pi', 'Denis', 'Get away from me!', '067cbbd43ebf8749faa39082e237f03f_01.jpg'),
+(40, 'robert', '$2y$10$W2wghzxImAyuvfLEdvDLYebwykB4I.JZcjGosOvl.aahYISW/7yEa', 'Robert Downey JR', 'If You Are Nothing Without This Suit Then You Shouldn’t Have It.', '773afe009578ed7efd24ffdfd32669b3_original.png');
 
 --
 -- Indexes for dumped tables
@@ -189,7 +192,7 @@ ALTER TABLE `assistant`
 -- Indexes for table `ev`
 --
 ALTER TABLE `ev`
-  ADD PRIMARY KEY (`PK`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `excursion`
@@ -236,7 +239,13 @@ ALTER TABLE `visitor`
 -- AUTO_INCREMENT for table `assistant`
 --
 ALTER TABLE `assistant`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `ev`
+--
+ALTER TABLE `ev`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `excursion`
@@ -254,7 +263,7 @@ ALTER TABLE `stand`
 -- AUTO_INCREMENT for table `visitor`
 --
 ALTER TABLE `visitor`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
