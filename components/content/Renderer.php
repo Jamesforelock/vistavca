@@ -7,6 +7,9 @@ abstract class Renderer {
     // Переворачивает результат Mysql-выборки и возвращает его в виде массива
     protected function reverseMySqlRes ($items) {
         $itemsArray = array();
+        if(!$items) { // Если результат запроса вернул false, возвращаем пустой массив
+            return array();
+        }
         while ($item = mysqli_fetch_array($items)) {
             $itemsArray[] = $item;
         }

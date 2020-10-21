@@ -23,8 +23,7 @@ function getItemsIndexes($allItemsCount, $itemsCount, $currentPage) {
     return array("first" => $first, "last" => $last);
 }
 
-// Возвращает записи из БД (Использование ORDER BY table.ID DESC переворачивает результат выборки с целью
-// отображения самых актуальных данных сверху)
+// Возвращает записи из БД
 function getItems($conn, $table, $itemsIndexes) {
     $first = $itemsIndexes["first"];
     $last = $itemsIndexes["last"];
