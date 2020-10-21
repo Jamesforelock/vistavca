@@ -1,5 +1,6 @@
 <?php
 session_start();
+$conn = $GLOBALS['conn'];
 
 // Загружает данные о найденном в БД пользователе в сессию
 function setSessionData ($user, $userType) {

@@ -27,6 +27,7 @@
             break;
     }
     ?>
+    <!--Скрипт плавного появления блока людей-->
     <script>
         let people = document.getElementsByClassName("people")[0]
         smoothAppear(people)

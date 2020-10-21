@@ -5,7 +5,7 @@ require_once "./components/content/Renderer.php";
 
 // Рисовальщик людей на текущей странице
 class PeopleRenderer extends Renderer {
-    public function render($items, $table, $currentPage, $pagesCount) {
+    public function render($items, $table) {
         $items = parent::reverseMySqlRes($items);
         $itemsRowCount = 0;
         echo '<div class="row">';

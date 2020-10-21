@@ -15,7 +15,7 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="./scripts/smoothAppear.js"></script>
-    <script src="./scripts/articleSignUpper.js"></script>
+    <script src="./scripts/excursionSignUpper.js"></script>
 </head>
 <body>
     <?php
@@ -30,7 +30,7 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
             include "./components/universal/header.php"
             ?>
         </div>
-        <?php include_once "./components/universal/imageRow.php" ?>
+        <div class="imageRow"></div>
         <div class="container-fluid">
             <main class="content">
                 <?php

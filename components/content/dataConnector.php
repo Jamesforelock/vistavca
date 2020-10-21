@@ -1,7 +1,5 @@
 <?php
 require_once "./components/universal/paginator.php"; // Пагинатор для отображения номеров-ссылок страниц
-require_once "./components/content/articles/ArticlesRenderer.php"; // Рисовальщик для статей
-require_once "./components/content/people/PeopleRenderer.php"; // Рисовальщик для людей
 
 // Возвращает количество всех элементов в таблице
 function getAllItemsCount($conn, $table) {
@@ -41,7 +39,7 @@ function renderData($conn, $itemsCount, $renderer, $table, $currentPage) {
     $pagesCount = getPagesCount($allItemsCount, $itemsCount); // Количество всех страниц
     $itemsIndexes = getItemsIndexes($allItemsCount, $itemsCount, $currentPage); // ID первого и второго элементов
     $items = getItems($conn, $table, $itemsIndexes); // Получение элементов
-    $renderer->render($items, $table, $currentPage, $pagesCount); // Рисуем элементы
+    $renderer->render($items, $table); // Рисуем элементы
     $tableType = $renderer->getTableType();
     // Рисуем Paginator
     Paginator($currentPage, $pagesCount, "index.php?section=$tableType&type=$table", 10);

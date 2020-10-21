@@ -290,6 +290,12 @@ a:hover {
   overflow: scroll;
   background-color: #f0f0f0;
 }
+.profile .profileInfo .secInfo .article_added {
+  margin-top: 10px;
+}
+.profile .profileInfo .secInfo .article_added:nth-child(2) {
+  margin-top: 10px;
+}
 
 .footer {
   height: 250px;

@@ -22,7 +22,7 @@ function setSessionDataAndHash($conn, $userArr, $userType, $rememberMe) {
         $addHash_query = 'INSERT INTO hu VALUES ("'.$hash.'", '.$userId.', "'.$userType.'")';
         $addHash = mysqli_query($conn, $addHash_query);
         if($addHash) {
-            setcookie("hash", $hash, time()+86400, "/"); // Установка куки на 24 часа
+            setcookie("hash", $hash, time()+86400, "/", "", false, true); // Установка куки на 24 часа
         }
     }
 
