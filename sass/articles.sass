@@ -4,10 +4,35 @@
     border-radius: 0
     margin-top: 20px
     color: black
+    transition: 1s
+    &_added
+        margin-top: -15px
+        color: white
+        background-color: rgba(0, 0, 0, 0.7)
+        &:nth-child(2)
+            margin-top: 0
+        & .article__readMore
+            color: gold
+        & .text-muted
+            color: white !important
+    &__readMore
+        font-weight: 500
+        color: #006b00
+        &:hover
+            text-decoration: none
+            transition: .1s
     &__title
         font-size: 25px
         text-transform: uppercase
         text-align: center
+    &__btn
+        color: darkgray
+        cursor: pointer
+        transition: .1s
+        &_add:hover
+            color: forestgreen
+        &_delete:hover
+            color: red
     &__imgContainer
         height: 270px
         display: flex

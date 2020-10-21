@@ -92,15 +92,6 @@ a:hover {
   font-size: 15px;
 }
 
-.readMore {
-  font-weight: 500;
-  color: #006b00;
-}
-.readMore:hover {
-  text-decoration: none;
-  transition: 0.1s;
-}
-
 .smoothAppeared, .articles, .people {
   opacity: 0;
   transition: 0.5s linear;
@@ -177,11 +168,45 @@ a:hover {
   border-radius: 0;
   margin-top: 20px;
   color: black;
+  transition: 1s;
+}
+.article_added {
+  margin-top: -15px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.article_added:nth-child(2) {
+  margin-top: 0;
+}
+.article_added .article__readMore {
+  color: gold;
+}
+.article_added .text-muted {
+  color: white !important;
+}
+.article__readMore {
+  font-weight: 500;
+  color: #006b00;
+}
+.article__readMore:hover {
+  text-decoration: none;
+  transition: 0.1s;
 }
 .article__title {
   font-size: 25px;
   text-transform: uppercase;
   text-align: center;
+}
+.article__btn {
+  color: darkgray;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.article__btn_add:hover {
+  color: forestgreen;
+}
+.article__btn_delete:hover {
+  color: red;
 }
 .article__imgContainer {
   height: 270px;

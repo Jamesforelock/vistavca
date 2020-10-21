@@ -12,6 +12,7 @@ $name = $_SESSION['name'];
 $userType = $_SESSION['type'];
 $description = $_SESSION['desc'];
 $pictureName = $_SESSION['picture'];
+$conn = $GLOBALS['conn'];
 ?>
 
 <div class="profile container">
@@ -21,23 +22,35 @@ $pictureName = $_SESSION['picture'];
         <?php MainInfo($login, $name, $userType, $description, $pictureName);?>
         <hr class="profileInfo__divider">
         <div class="secInfo">
-            <span class="secInfo__title">The excursions you signed up for</span>
-            <div class="secInfo__scrollContent">
-               <?php
-               Article("Title", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, aliquid animi delectus et expedita facere
-    facilis impedit ipsum quam quibusdam, quis saepe tempore, vero? Commodi explicabo impedit odio sit ullam?", "./assets/i/excursion/01.png", time());
-               Article("Title", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, aliquid animi delectus et expedita facere
-    facilis impedit ipsum quam quibusdam, quis saepe tempore, vero? Commodi explicabo impedit odio sit ullam?", "./assets/i/excursion/01.png", time());
-               Article("Title", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, aliquid animi delectus et expedita facere
-    facilis impedit ipsum quam quibusdam, quis saepe tempore, vero? Commodi explicabo impedit odio sit ullam?", "./assets/i/excursion/01.png", time());
-               Article("Title", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, aliquid animi delectus et expedita facere
-    facilis impedit ipsum quam quibusdam, quis saepe tempore, vero? Commodi explicabo impedit odio sit ullam?", "./assets/i/excursion/01.png", time());
-               Article("Title", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, aliquid animi delectus et expedita facere
-    facilis impedit ipsum quam quibusdam, quis saepe tempore, vero? Commodi explicabo impedit odio sit ullam?", "./assets/i/excursion/01.png", time());
-               Article("Title", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, aliquid animi delectus et expedita facere
-    facilis impedit ipsum quam quibusdam, quis saepe tempore, vero? Commodi explicabo impedit odio sit ullam?", "./assets/i/excursion/01.png", time());
-               ?>
-            </div>
+            <?php
+                if($userType === "visitor") {
+                    $getUserArticles_query = "SELECT * FROM `ev` WHERE Visitor_Login = '$login'";
+                    $userArticles = mysqli_query($conn, $getUserArticles_query);
+                    $userArticlesId = array();
+                    while ($row = mysqli_fetch_array($userArticles)) {
+                        $userArticlesId[] = $row['Excursion_ID'];
+                    }
+                    if(count($userArticlesId) != 0) {
+                        echo '
+                         <span class="secInfo__title">The excursions you signed up for</span>
+                         <div class="secInfo__scrollContent">
+                        ';
+                        $getArticles_query = "SELECT * FROM `excursion` WHERE ";
+                        for($i = 0; $i<count($userArticlesId); $i++) {
+                            $getArticles_query = $getArticles_query . "ID = $userArticlesId[$i]";
+                            if($i === count($userArticlesId) - 1) continue;
+                            $getArticles_query = $getArticles_query . " OR ";
+                        }
+                        $articles = mysqli_query($conn, $getArticles_query);
+                        while ($item = mysqli_fetch_array($articles)) {
+                            Article($item['ID'], $item['Name'], $item['Description'], 'assets/i/' . 'excursion' . '/' . $item['Picture'],
+                                $item['Date'], array("isAdded" => true));
+                        }
+                    }
+
+                    echo '</div>';
+                }
+            ?>
         </div>
     </div>
 </div>

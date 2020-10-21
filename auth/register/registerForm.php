@@ -8,9 +8,6 @@
                 <form enctype="multipart/form-data" method="POST">
                     <?php require "register/register.php" ?>
                     <div class="form-group">
-                        <input name="picture" type="file" />
-                    </div>
-                    <div class="form-group">
                         <input name="login_reg" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your login">
                     </div>
                     <div class="form-group">
@@ -21,6 +18,10 @@
                     </div>
                     <div class="form-group">
                         <input name="description_reg" class="form-control" placeholder="Briefly about you">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-check-label">Your avatar: </label>
+                        <input name="picture" type="file" />
                     </div>
                     <div class="form-group form-check">
                         <input onchange="toggleSecretCodeInput()" type="checkbox" class="form-check-input" id="assistantCheckBox" name="isAssistant">
