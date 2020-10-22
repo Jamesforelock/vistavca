@@ -32,16 +32,25 @@
         &_add:hover
             color: forestgreen
         &_delete:hover
-            color: red
+            color: #ff0000
     &__imgContainer
         height: 270px
         display: flex
         align-items: center
         overflow: hidden
+
     &__img
         width: 100%
         min-height: 270px
         border-radius: 0
+        opacity: 0.8
+        &:hover
+            opacity: 1
+            ransition: opacity 1s ease
+            -webkit-transition: opacity 1s ease
+
+
+
     &__text
         min-height: 120px
         font-size: 13px
