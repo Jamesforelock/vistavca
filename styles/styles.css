@@ -221,7 +221,7 @@ a:hover {
 }
 .article__img:hover {
   opacity: 1;
-  ransition: opacity 1s ease;
+  transition: opacity 1s ease;
   -webkit-transition: opacity 1s ease;
 }
 .article__text {
