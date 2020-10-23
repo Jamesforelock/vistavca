@@ -167,7 +167,6 @@ a:hover {
   border-radius: 0;
   margin-top: 20px;
   color: black;
-  transition: 1s;
 }
 .article_added {
   margin-top: -15px;
@@ -218,11 +217,15 @@ a:hover {
   min-height: 270px;
   border-radius: 0;
   opacity: 0.8;
+  -moz-transition: all 2s ease-out;
+  -o-transition: all 2s ease-out;
+  -webkit-transition: all 2s ease-out;
 }
-.article__img:hover {
+.article:hover img {
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
   opacity: 1;
-  transition: opacity 1s ease;
-  -webkit-transition: opacity 1s ease;
 }
 .article__text {
   min-height: 120px;
