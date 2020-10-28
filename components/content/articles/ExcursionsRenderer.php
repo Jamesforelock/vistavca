@@ -20,10 +20,11 @@ class ExcursionsRenderer extends ArticlesRenderer {
 
     // Возвращает экскурсии, на которые записан посетитель из связующей таблицы ev
     private function getUserExcursions() {
-        if(!isset($_SESSION['login'])) {
+        if(!isset($GLOBALS['user'])) {
             return false;
         }
-        $login = $_SESSION['login'];
+        $user = $GLOBALS['user'];
+        $login = $user['login'];
         $conn = $GLOBALS['conn'];
         $getUserExcursions_query = "SELECT * FROM `ev` WHERE Visitor_Login = '$login'";
         $userExcursions = mysqli_query($conn, $getUserExcursions_query);

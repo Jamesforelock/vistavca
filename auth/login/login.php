@@ -1,21 +1,17 @@
 <!--Скрипт логинизации-->
 <?php
-require "../components/universal/dbConnector.php";
+require_once "../components/universal/dbConnector.php";
 require_once "../components/universal/errorMessage.php";
 
 $conn = connectToDb(); // Подключение к БД
 
 // Загружает данные о найденном в БД пользователе в сессию и создает hash для автоматической авторизации (при отмеченном RememberMe)
-function setSessionDataAndHash($conn, $userArr, $userType, $rememberMe) {
+function setSessionDataAndHash($conn, $userId, $userType, $rememberMe) {
     session_unset(); // Удаляем все данные из сессии на случай, если они были
     session_destroy(); // Удаляем сессию
     session_start(); // Запускаем новую сессию
-    $_SESSION['login'] = $userArr['Login']; // Запись в сессию значения логина пользователя
-    $_SESSION['name'] = $userArr['Name']; // Запись в сессию значения полного имени пользователя
-    $_SESSION['desc'] = $userArr['Description']; // Запись в сессию значения описания пользователя
-    $_SESSION['picture'] = $userArr['Picture']; // Запись в сессию названия файла аватарки пользователя
-    $_SESSION['type'] = $userType;
-    $userId = $userArr['ID'];
+    $_SESSION['ID'] = $userId; // Запись в сессию id пользователя
+    $_SESSION['type'] = $userType; // Запись в сессию типа пользователя (название таблицы, откуда будут браться данные)
 
     if($rememberMe) {
         $hash = substr(md5(time()), 0, 16); // Генерация хеша
@@ -28,13 +24,20 @@ function setSessionDataAndHash($conn, $userArr, $userType, $rememberMe) {
 
 }
 
-function isUserInTable($conn, $table, $login, &$user, &$userType) {
+function isUserInTable($conn, $table, $login, $enteredPassword, &$userId, &$userType) {
     $getUser_query = "
     SELECT * FROM `$table` WHERE login = '$login'";
-    $foundUser = mysqli_query($conn, $getUser_query);
-    if(mysqli_num_rows($foundUser) != 0) {
-        $user = $foundUser;
-        $userType = $table;
+    $foundUser = mysqli_query($conn, $getUser_query); // Поиск пользователя по логину
+    if(mysqli_num_rows($foundUser) != 0) { // Если пользователь по логину найден
+        $userArr = mysqli_fetch_array($foundUser); // Представляем пользователя в виде массива
+        $hashedPassword = $userArr['Password']; // Получение захешированного пароля из БД
+
+        // Если введенный пароль не совпадает с захешированным паролем
+        if(!password_verify($enteredPassword, $hashedPassword)){
+            return false;
+        }
+        $userId = $userArr['ID']; // Получение id пользователя
+        $userType = $table; // Получение типа пользователя (assistant или visitor)
         return true;
     }
     return false;
@@ -53,21 +56,15 @@ if(isset($_POST['signIn'])) {
     }
     if(!isset($_POST['rememberMe'])) $rememberMe = false; // Если checkbox rememberMe не выбран
     else $rememberMe = true; // Если rememberMe checkbox выбран
-    $user = null;
-    $userType = null;
-    $isUserInDb = isUserInTable($conn, "visitor", $enteredLogin, $user, $userType)
-        || isUserInTable($conn, "assistant", $enteredLogin, $user, $userType);
+    $userId = null; // Пользовательский id
+    $userType = null; // Пользовательский тип
+    $isUserInDb = isUserInTable($conn, "visitor", $enteredLogin, $enteredPassword, $userId, $userType)
+        || isUserInTable($conn, "assistant", $enteredLogin, $enteredPassword, $userId, $userType);
     if(!$isUserInDb) {
         ErrorMessage("Incorrect login or password");
         return;
     }
-    $userArr = mysqli_fetch_array($user);
-    $hashedPassword = $userArr['Password'];
-    if(!password_verify($enteredPassword, $hashedPassword)){
-        ErrorMessage("Incorrect login or password");
-        return;
-    }
-    setSessionDataAndHash($conn, $userArr, $userType, $rememberMe);
+    setSessionDataAndHash($conn, $userId, $userType, $rememberMe);
     header("Location: ../index.php"); // Переадресация
     exit;
 }

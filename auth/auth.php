@@ -3,7 +3,7 @@
 $timestamp = date("YmdHis"); // Для автоматического обновления стилей
 
 session_start();
-if(isset($_SESSION['login'])) {
+if(isset($_SESSION['ID'])) {
     header("Location: ../index.php");
     end;
 }
@@ -38,10 +38,10 @@ function isCorrectSymbols($formData) {
 <body>
 <?php
 if(isset($_GET['section']) && $_GET['section'] === 'register') {
-    require 'register/registerForm.php';
+    require_once 'register/registerForm.php';
 }
 else {
-    require 'login/loginForm.php';
+    require_once 'login/loginForm.php';
 }
 ?>
 <script src="../scripts/auth.js"></script>

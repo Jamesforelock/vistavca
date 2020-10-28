@@ -1,6 +1,7 @@
 <div class="div people container">
     <?php
-    require "components/content/dataConnector.php";
+    require_once "components/content/dataConnector.php";
+    require_once "components/content/renderData.php";
     require_once "components/universal/intro.php";
     require_once "components/content/people/PeopleRenderer.php";
     $conn = $GLOBALS['conn'];
@@ -19,11 +20,13 @@
     switch ($sectionType) {
         case 'visitor': // Если тип статей - экскурсии
             Intro("Visitors", "Here you can see our nice Visitors");
-            renderData($conn,6, new PeopleRenderer(), "visitor", $currentPage);
+            $data = getData($conn,6, "visitor", $currentPage);
+            renderData($data, new PeopleRenderer());
             break;
         case 'assistant': // Если тип статей - стенды
             Intro("Assistants", "Here you can see our nice Assistants");
-            renderData($conn, 6, new PeopleRenderer(), "assistant", $currentPage);
+            $data = getData($conn,6, "assistant", $currentPage);
+            renderData($data, new PeopleRenderer());
             break;
     }
     ?>

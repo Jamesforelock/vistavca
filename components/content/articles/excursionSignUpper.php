@@ -1,14 +1,17 @@
 <?php
 require_once "../../universal/dbConnector.php";
+require_once "../../universal/userDataConnector.php";
 $conn = connectToDb(); // Подключение к БД
 session_start(); // Запуск сессии
-if($_SESSION['type'] === "visitor") { // Если тип пользователя = посетитель
+getUserData(); // Загрузка данных пользователя в $GLOBALS
+$user = isset($GLOBALS['user']) ? $GLOBALS['user'] : null;
+if($user && $user['type'] === "visitor") { // Если тип пользователя = посетитель
     switch ($_GET['action']) {
         case "add": // Если посетитель желает добавить экскурсию
-            echo addExcursion($GLOBALS['conn'], $_POST['excursionId'], $_SESSION['login']);
+            echo addExcursion($GLOBALS['conn'], $_POST['excursionId'], $user['login']);
             break;
         case "delete": // Если посетитель желает удалить экскурсию
-            echo deleteExcursion($GLOBALS['conn'], $_POST['excursionId'], $_SESSION['login']);
+            echo deleteExcursion($GLOBALS['conn'], $_POST['excursionId'], $user['login']);
             break;
     }
 }

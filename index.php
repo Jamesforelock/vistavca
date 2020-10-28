@@ -16,14 +16,18 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="./scripts/smoothAppear.js"></script>
     <script src="./scripts/excursionSignUpper.js"></script>
+
 </head>
 <body>
     <?php
-        require "./components/universal/dbConnector.php";
+        require_once "./components/universal/dbConnector.php";
         $conn = connectToDb(); // Подключение к БД
         $GLOBALS['conn'] = $conn;
-        require "./auth/login/autologin.php";
+        require_once "./auth/login/autologin.php";
+        require_once "./components/universal/userDataConnector.php";
+        getUserData(); // Загрузка данных пользователя в $GLOBALS
     ?>
+    <?php //include "./components/universal/multiButton.php" ?>
     <div class="wrapper">
         <div class="container-fluid">
             <?php

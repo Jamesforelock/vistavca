@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['login'])) {
+if(!isset($GLOBALS['user'])) { // Если данные пользователя не установлены
     header("Location: ./auth/auth.php");
     exit;
 }
@@ -8,11 +8,12 @@ require_once "MainInfo.php";
 require_once "SecInfo.php";
 require_once "./components/content/articles/article.php";
 
-$login = $_SESSION['login'];
-$name = $_SESSION['name'];
-$userType = $_SESSION['type'];
-$description = $_SESSION['desc'];
-$pictureName = $_SESSION['picture'];
+$user = $GLOBALS['user'];
+$login = $user['login'];
+$name = $user['name'];
+$userType = $user['type'];
+$description = $user['description'];
+$pictureName = $user['picture'];
 $conn = $GLOBALS['conn'];
 ?>
 

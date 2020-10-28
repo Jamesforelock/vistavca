@@ -3,7 +3,9 @@
 function Human($name, $description, $picturePath) {
     echo '
         <div class="col human">
-            <img src="'.$picturePath.'" alt="" class="human__photo">
+            <div class="human__photoContainer">
+                <img src="'.$picturePath.'" alt="" class="human__photo">
+            </div>
             <div class="titleBlock">
                 <span class="titleBlock__title">'.$name.'</span>
             </div>

@@ -2,8 +2,9 @@
 // Компонент одной статьи
 function Article($id, $title, $description, $picturePath, $date) {
     $description = strTrim($description); // Обрезка описания статьи
+    if(!$picturePath) $picturePath = "assets/i/noPhoto_a.png";
     echo '
-    <div class="card mb-3 article id="'.$id.'">
+    <div class="card mb-3 article" id="'.$id.'">
         <div class="row no-gutters">
             <div class="col-md-4 article__imgContainer">
                 <img src="'.$picturePath.'" class="card-img article__img" alt="...">

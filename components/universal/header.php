@@ -12,10 +12,11 @@
             <a href="./index.php?section=people&type=visitor" class="nav__link">Our visitors</a>
             <div class="nav-item dropdown">
                 <?php
-                if(isset($_SESSION['name']) && isset($_SESSION['type'])) {
+                if(isset($GLOBALS['user'])) { // Если есть пользовательские данные
+                    $user = $GLOBALS['user']; // Получаем пользовательские данные и выводим в шапке
                     echo '
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    '.$_SESSION['name'].' ('.$_SESSION['type'].')
+                    '.$user['name'].' ('.$user['type'].')
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="./index.php?section=profile">My Profile</a>

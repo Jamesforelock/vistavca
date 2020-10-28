@@ -52,7 +52,7 @@ function Ellipsis() { // Рисует многоточие
 function Paginator($currentPage, $pagesCount, $baseAddress, $linksCount) {
     if($pagesCount > 1) {
         echo ' <nav aria-label="Page navigation example" class="paginationContainer"> <ul class="pagination">';
-        if ($currentPage != 1) { // Вывод ссылки "назад", если текущая страница != номеру последней страницы
+        if ($currentPage != 1) { // Вывод ссылки "назад", если текущая страница != номеру первой страницы
             PageArrowLink($currentPage, $baseAddress, "LEFT");
         }
         // Вывод ссылки на первую страницу
