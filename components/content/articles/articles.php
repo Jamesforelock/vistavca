@@ -34,7 +34,7 @@
                 break;
             case 'stand': // Если тип статей - стенды
                 Intro("Stands", "Here you can see our nice Stands");
-                $data = getData($conn, 5, "excursion", $currentPage);
+                $data = getData($conn, 5, "stand", $currentPage);
                 renderData($data, new ArticlesRenderer());
                 break;
         }
