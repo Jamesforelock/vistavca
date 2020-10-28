@@ -1,9 +1,9 @@
 <div class="div people container">
     <?php
-    require_once "components/content/dataConnector.php";
-    require_once "components/content/renderData.php";
-    require_once "components/universal/intro.php";
-    require_once "components/content/people/PeopleRenderer.php";
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/dataConnector.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/renderData.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/intro.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/people/peopleRenderer.php';
     $conn = $GLOBALS['conn'];
     if(isset($_GET['type'])) { // Проверяем, установлен ли тип отображаемых людей
         $sectionType = $_GET['type'];

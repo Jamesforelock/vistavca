@@ -1,5 +1,5 @@
 <?php
-require_once "VisitorAdder.php";
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/register/visitorAdder.php';
 
 class AssistantAdder extends VisitorAdder {
 
@@ -13,11 +13,11 @@ class AssistantAdder extends VisitorAdder {
 
     public function addUser() {
         // Если был введен неверный секретный код
-        if(!$this->checkSecretCode($this->enteredSecretCode, "../edit/secretAssistantCode.txt")) {
+        if(!$this->checkSecretCode($this->enteredSecretCode, $_SERVER['DOCUMENT_ROOT'].'/vistavca/edit/secretAssistantCode.txt')) {
             $this->error = "Sorry, but you entered the incorrect secret code";
             return false;
         }
-        $this->generateNewSecretCode("../edit/secretAssistantCode.txt");
+        $this->generateNewSecretCode($_SERVER['DOCUMENT_ROOT'].'/vistavca/edit/secretAssistantCode.txt');
         parent::addUser();
         return true;
     }

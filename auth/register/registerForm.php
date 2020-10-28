@@ -6,7 +6,7 @@
                 <a href="../index.php" class="backLink">Back</a>
                 <h1>Registration</h1>
                 <form enctype="multipart/form-data" method="POST">
-                    <?php require "register/register.php" ?>
+                    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/register/register.php' ?>
                     <div class="form-group">
                         <input name="login_reg" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your login">
                     </div>

@@ -1,7 +1,7 @@
 <?php
-require_once "./components/content/articles/article.php";
-require_once "./components/universal/paginator.php";
-require_once "./components/content/Renderer.php";
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/articles/article.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/paginator.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/renderer.php';
 
 // Рисовальщик статей на текущей странице
 class ArticlesRenderer extends Renderer {

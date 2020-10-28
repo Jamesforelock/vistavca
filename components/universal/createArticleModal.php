@@ -1,4 +1,4 @@
-<?php require_once "./components/content/articles/article.php"?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/articles/article.php'?>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

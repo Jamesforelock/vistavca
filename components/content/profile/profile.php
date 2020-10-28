@@ -1,12 +1,12 @@
 <?php
 if(!isset($GLOBALS['user'])) { // Если данные пользователя не установлены
-    header("Location: ./auth/auth.php");
+    header('Location: http://'.$_SERVER['HTTP_HOST'].'/vistavca/auth/auth.php');
     exit;
 }
 
-require_once "MainInfo.php";
-require_once "SecInfo.php";
-require_once "./components/content/articles/article.php";
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/profile/mainInfo.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/profile/secInfo.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/articles/article.php';
 
 $user = $GLOBALS['user'];
 $login = $user['login'];

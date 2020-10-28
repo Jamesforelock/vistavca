@@ -1,5 +1,5 @@
 <?php
-require_once "./components/content/articles/article.php";
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/articles/article.php';
 
 // Показывает информацию для посетителя (список добавленных экскурсий)
 function SecVisitorInfo ($conn, $login) {

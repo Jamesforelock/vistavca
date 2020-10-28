@@ -1,7 +1,7 @@
 <?php
 // Отображение главной информации о компании ======================================================================
 echo '<div class="row justify-content-around">';
-$footer_content_mainInfo = fopen("./edit/footer_content_mainInfo.txt", "r");
+$footer_content_mainInfo = fopen($_SERVER['DOCUMENT_ROOT'].'/vistavca/edit/footer_content_mainInfo.txt', "r");
 if($footer_content_mainInfo) { // Если файл успешно открылся
     while(!feof($footer_content_mainInfo)) { // Пока не будет достигнут конец файла
         $textString = fgets($footer_content_mainInfo, 999); // Получаем очередную строку
@@ -41,7 +41,7 @@ echo '</div>';
 
 // Отображение информации о группах компании в соц. сетях =========================================================
 echo '<div class="social">';
-$footer_content_socialInfo = fopen("./edit/footer_content_socialInfo.txt", "r");
+$footer_content_socialInfo = fopen($_SERVER['DOCUMENT_ROOT'].'/vistavca/edit/footer_content_socialInfo.txt', "r");
 if($footer_content_socialInfo) { // Если файл успешно открылся
     while(!feof($footer_content_socialInfo)) {
         $textString = fgets($footer_content_socialInfo);

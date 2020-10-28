@@ -1,9 +1,9 @@
 <!--Скрипт регистрации-->
 <?php
-    require_once "../components/universal/dbConnector.php"; // Для работы с БД
-    require_once "../components/universal/errorMessage.php"; // Компонент сообщений об ошибке
-    require_once "VisitorAdder.php"; // Добавлятель посетителя
-    require_once "AssistantAdder.php"; // Добавлятель ассистента
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/dbConnector.php'; // Для работы с БД
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/errorMessage.php'; // Компонент сообщений об ошибке
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/register/visitorAdder.php'; // Добавлятель посетителя
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/register/assistantAdder.php'; // Добавлятель ассистента
     $conn = connectToDb(); // Подключение к БД
 
     // Проверяет наличие записи в таблице БД
@@ -21,10 +21,10 @@
             return;
         }
         // Получение значений из формы
-        $login = mysqli_real_escape_string($conn, $_POST['login_reg']);
+        $login = mysqli_real_escape_string($conn, htmlspecialchars($_POST['login_reg']));
         $password = mysqli_real_escape_string($conn, password_hash($_POST['password_reg'], PASSWORD_DEFAULT));
-        $name = mysqli_real_escape_string($conn, $_POST['name_reg']);
-        $description = mysqli_real_escape_string($conn, $_POST['description_reg']);
+        $name = mysqli_real_escape_string($conn, htmlspecialchars($_POST['name_reg']));
+        $description = mysqli_real_escape_string($conn, htmlspecialchars($_POST['description_reg']));
         $formData = array($login, $_POST['password_reg'], $name, $description);
         if(!isCorrectSymbols($formData)) {
             ErrorMessage("Error! The entered data may contain invalid characters.");
@@ -63,7 +63,7 @@
                 ErrorMessage($assistantAdder->error);
                 return;
             }
-            header("Location: ./auth.php"); // Переадресация
+            header('Location: http://'.$_SERVER['HTTP_HOST'].'/vistavca/auth/auth.php'); // Переадресация
             exit;
         }
         else { // Если пользователь желает себя зарегистрировать как посетителя
@@ -73,7 +73,7 @@
                 ErrorMessage($visitorAdder->error);
                 return;
             }
-            header("Location: ./auth.php"); // Переадресация
+            header('Location: http://'.$_SERVER['HTTP_HOST'].'/vistavca/auth/auth.php'); // Переадресация
             exit;
             }
         }

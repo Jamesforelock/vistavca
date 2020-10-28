@@ -1,5 +1,5 @@
 <?php
-require_once "./components/universal/paginator.php"; // Пагинатор для отображения номеров-ссылок страниц
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/paginator.php'; // Пагинатор для отображения номеров-ссылок страниц
 // Отрисовка данных и вызов отрисовки пагинатора
 function renderData($data, $renderer) {
     $pagesCount = $data["pagesCount"]; // Количество всех страниц
@@ -11,3 +11,4 @@ function renderData($data, $renderer) {
     // Рисуем Paginator
     Paginator($currentPage, $pagesCount, "index.php?section=$tableType&type=$table", 10);
 }
+

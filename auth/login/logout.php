@@ -1,5 +1,5 @@
 <?php
-    require_once "../../components/universal/dbConnector.php";
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/dbConnector.php';
     session_start(); // Запуск сессии
     session_unset(); // Удаление всех значений из сессии
     session_destroy(); // Уничтожение сессии
@@ -13,5 +13,5 @@
             setcookie("hash", "", time()-3600, "/"); // Удаление хеша из куков
         }
    }
-    header("Location: ../../index.php");
-    end;
+    header('Location: http://'.$_SERVER['HTTP_HOST'].'/vistavca/index.php');
+    exit;

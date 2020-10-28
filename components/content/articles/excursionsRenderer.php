@@ -1,6 +1,6 @@
 <?php
-require_once "./components/content/articles/ArticlesRenderer.php";
-require_once "./components/content/articles/article.php";
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/articles/articlesRenderer.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/articles/article.php';
 // Класс рисовальщика экскурсий
 class ExcursionsRenderer extends ArticlesRenderer {
     public function render($items, $table) {

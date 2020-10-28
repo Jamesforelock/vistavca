@@ -1,7 +1,7 @@
 <?php
-require_once "./components/content/people/human.php";
-require_once "./components/universal/paginator.php";
-require_once "./components/content/Renderer.php";
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/people/human.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/paginator.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/renderer.php';
 
 // Рисовальщик людей на текущей странице
 class PeopleRenderer extends Renderer {

@@ -1,7 +1,7 @@
 <!--Скрипт логинизации-->
 <?php
-require_once "../components/universal/dbConnector.php";
-require_once "../components/universal/errorMessage.php";
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/dbConnector.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/errorMessage.php';
 
 $conn = connectToDb(); // Подключение к БД
 
@@ -65,7 +65,7 @@ if(isset($_POST['signIn'])) {
         return;
     }
     setSessionDataAndHash($conn, $userId, $userType, $rememberMe);
-    header("Location: ../index.php"); // Переадресация
+    header('Location: http://'.$_SERVER['HTTP_HOST'].'/vistavca/index.php'); // Переадресация
     exit;
 }
 ?>

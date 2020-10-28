@@ -67,7 +67,7 @@ class VisitorAdder {
     // В случае успеха возвращает true
     public function uploadPicture($picture) {
         // Путь к папке с фотографиями посетителей + сгенерированное название файла
-        $path = __DIR__ . '\\..\\..\\assets\\i\\'.$this->table.'\\' . $this->getPictureName($picture);
+        $path = $_SERVER['DOCUMENT_ROOT'].'/vistavca/assets/i/'.$this->table.'/' . $this->getPictureName($picture);
         move_uploaded_file ($picture['tmp_name'], $path);
         return true;
     }

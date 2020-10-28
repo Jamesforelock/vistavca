@@ -6,7 +6,7 @@
                 <a href="../index.php" class="backLink">Back</a>
                 <h1>Login</h1>
                 <form method="POST">
-                    <?php require "login/login.php" ?>
+                    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/login/login.php' ?>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Your login</label>
                         <input name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

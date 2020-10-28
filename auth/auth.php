@@ -4,14 +4,14 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
 
 session_start();
 if(isset($_SESSION['ID'])) {
-    header("Location: ../index.php");
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/vistavca/index.php');
     end;
 }
 
 // Возвращает true, если в строке нет некорректных символов
 function isCorrectSymbols($formData) {
-    $incorrectSymbols = array(">", "<", "'", '"', "&", "@", "#", "*", "(", ")", "%", "$", "#",
-        "№", "^", "`", "~", "\\", "|", "/", "+", "-");
+    $incorrectSymbols = array(">", "<", "'", "&", "#",
+        "^", "`", "~", "\\", "|", "/");
     foreach ($formData as $enteredText) {
         $arrEnteredText = str_split($enteredText);
         foreach ($incorrectSymbols as $symbol) {
@@ -38,10 +38,10 @@ function isCorrectSymbols($formData) {
 <body>
 <?php
 if(isset($_GET['section']) && $_GET['section'] === 'register') {
-    require_once 'register/registerForm.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/register/registerForm.php';
 }
 else {
-    require_once 'login/loginForm.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/login/loginForm.php';
 }
 ?>
 <script src="../scripts/auth.js"></script>

@@ -16,35 +16,34 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="./scripts/smoothAppear.js"></script>
     <script src="./scripts/excursionSignUpper.js"></script>
-
 </head>
 <body>
     <?php
-        require_once "./components/universal/dbConnector.php";
+        require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/dbConnector.php';
         $conn = connectToDb(); // Подключение к БД
         $GLOBALS['conn'] = $conn;
-        require_once "./auth/login/autologin.php";
-        require_once "./components/universal/userDataConnector.php";
+        require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/login/autologin.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/userDataConnector.php';
         getUserData(); // Загрузка данных пользователя в $GLOBALS
     ?>
     <?php //include "./components/universal/multiButton.php" ?>
     <div class="wrapper">
         <div class="container-fluid">
             <?php
-            include "./components/universal/header.php"
+                include_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/header.php'
             ?>
         </div>
         <div class="imageRow"></div>
         <div class="container-fluid">
             <main class="content">
                 <?php
-                include "./components/content/content.php"
+                    include_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/content/content.php'
                 ?>
             </main>
         </div>
     </div>
     <?php
-        include "./components/universal/footer.php";
+        include_once $_SERVER['DOCUMENT_ROOT']."/vistavca/components/universal/footer.php";
     ?>
 
 
