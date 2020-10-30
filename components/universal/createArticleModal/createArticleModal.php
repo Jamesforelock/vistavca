@@ -28,6 +28,10 @@
                         <label for="exampleFormControlTextarea1">Article's text</label>
                         <textarea class="form-control" rows="5" placeholder="Text" id="newArticle_text" onkeyup="setText()"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="newArticle_image">Article's image: </label>
+                        <input type="file" accept="/image/*" id="newArticle_image">
+                    </div>
                 </form>
                 <span>Here you can see the appearance of a future article</span>
                 <?php
