@@ -2,8 +2,7 @@
 // Компонент одной статьи
 function Article($id, $title, $description, $picturePath, $date) {
     $description = strTrim($description); // Обрезка описания статьи
-    if(!$picturePath) $picturePath = "assets/i/noPhoto_a.png";
-    echo '
+    return '
     <div class="card mb-3 article" id="'.$id.'">
         <div class="row no-gutters">
             <div class="col-md-4 article__imgContainer">
@@ -31,7 +30,7 @@ function Excursion($id, $title, $description, $picturePath, $date, $isAdded) {
     else { // Если экскурсии у посетителя нет
         $addAndDeleteBtn = '<i class="fa fa-plus article__btn article__btn_add" onclick="addExcursion('.$id.')"></i>';
     }
-    echo '
+    return '
     <div class="card mb-3 article '.($isAdded ? "article_added" : "").'" id="'.$id.'">
         <div class="row no-gutters">
             <div class="col-md-4 article__imgContainer">

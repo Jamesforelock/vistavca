@@ -7,7 +7,7 @@
     </button>
 </div>
 
-<?php require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/createArticleModal.php'?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/createArticleModal/createArticleModal.php'?>
 
 
 <script src="./scripts/multiButton.js"></script>

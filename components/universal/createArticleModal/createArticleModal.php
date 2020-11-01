@@ -10,23 +10,22 @@
                 </button>
             </div>
             <ul class="nav">
-                <li class="nav-item articleType active" onclick="setArticleType(this)" id="excursionArticleType">
+                <li class="nav-item articleType active" onclick="setArticleType(this.id)" id="excursionArticleType">
                     <span class="nav-link">New excursion</span>
                 </li>
-                <li class="nav-item articleType" onclick="setArticleType(this)" id="standArticleType">
+                <li class="nav-item articleType" onclick="setArticleType(this.id)" id="standArticleType">
                     <span class="nav-link">New stand</span>
-                </li>
                 </li>
             </ul>
             <div class="modal-body">
                 <form id="modal-form">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Article's title</label>
-                        <input class="form-control" placeholder="Title" id="newArticle_title" onkeyup="setTitle()">
+                        <input class="form-control" placeholder="Title" id="newArticle_title" onkeyup="setTitle()" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Article's text</label>
-                        <textarea class="form-control" rows="5" placeholder="Text" id="newArticle_text" onkeyup="setText()"></textarea>
+                        <textarea class="form-control" rows="5" placeholder="Text" id="newArticle_text" onkeyup="setText()" autocomplete="off"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="newArticle_image">Article's image: </label>
@@ -34,13 +33,15 @@
                     </div>
                 </form>
                 <span>Here you can see the appearance of a future article</span>
+                <br>
+                <span onclick="removeImage()" class="btn btn-danger">Clear image</span>
                 <?php
-                    Article("proto", "Title", "Text", "", time());
+                    echo Article("proto", "Title", "Text", "assets/i/excursion/noPhoto_a.png", time());
                 ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="getFormValues()">Create a new article</button>
+                <button type="button" class="btn btn-primary" onclick="createArticle()">Create a new article</button>
             </div>
         </div>
     </div>

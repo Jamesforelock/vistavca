@@ -1,23 +1,31 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/register/visitorAdder.php';
 
-class AssistantAdder extends VisitorAdder {
+class EmployeeAdder extends VisitorAdder {
 
     private $enteredSecretCode;
 
     public function __construct($db, $userData, $enteredSecretCode) {
         parent::__construct($db, $userData);
-        $this->table = 'assistant';
         $this->enteredSecretCode = $enteredSecretCode;
     }
 
     public function addUser() {
         // Если был введен неверный секретный код
-        if(!$this->checkSecretCode($this->enteredSecretCode, $_SERVER['DOCUMENT_ROOT'].'/vistavca/edit/secretAssistantCode.txt')) {
+        $isAdminSecretCode = $this->checkSecretCode($this->enteredSecretCode, $_SERVER['DOCUMENT_ROOT'].'/vistavca/edit/secretAdminCode.txt');
+        $isAssistantSecretCode = $this->checkSecretCode($this->enteredSecretCode, $_SERVER['DOCUMENT_ROOT'].'/vistavca/edit/secretAssistantCode.txt');
+        if(!$isAdminSecretCode && !$isAssistantSecretCode) {
             $this->error = "Sorry, but you entered the incorrect secret code";
             return false;
         }
-        $this->generateNewSecretCode($_SERVER['DOCUMENT_ROOT'].'/vistavca/edit/secretAssistantCode.txt');
+        elseif($isAssistantSecretCode) {
+            $this->table = 'assistant';
+            $this->generateNewSecretCode($_SERVER['DOCUMENT_ROOT'].'/vistavca/edit/secretAssistantCode.txt');
+        }
+        elseif($isAdminSecretCode) {
+            $this->table = 'admin';
+            $this->generateNewSecretCode($_SERVER['DOCUMENT_ROOT'].'/vistavca/edit/secretAdminCode.txt');
+        }
         parent::addUser();
         return true;
     }

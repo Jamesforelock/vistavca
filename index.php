@@ -26,7 +26,6 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
         require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/userDataConnector.php';
         getUserData(); // Загрузка данных пользователя в $GLOBALS
     ?>
-    <?php //include "./components/universal/multiButton.php" ?>
     <div class="wrapper">
         <div class="container-fluid">
             <?php
@@ -45,6 +44,7 @@ $timestamp = date("YmdHis"); // Для автоматического обнов
     <?php
         include_once $_SERVER['DOCUMENT_ROOT']."/vistavca/components/universal/footer.php";
     ?>
+    <?php include "./components/universal/multiButtonConnector.php" ?>
 
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

@@ -13,7 +13,9 @@ class ExcursionsRenderer extends ArticlesRenderer {
         foreach ($items as $item) { // Отрисовка каждой экскурсии
             // Последним параметром булевое значение "Есть ли id данной экскурсии в
             // массиве id тех, что привязаны к посетителю"
-            Excursion($item['ID'], $item['Name'], $item['Description'], 'assets/i/' . $table . '/' . $item['Picture'],
+            if($item['Picture'] === "") $articlePicture = 'noPhoto_a.png';
+            else $articlePicture = $item['Picture'];
+            echo Excursion($item['ID'], $item['Name'], $item['Description'], 'assets/i/' . $table . '/' . $articlePicture,
                 $item['Date'], in_array($item['ID'], $userExcursionsId));
         }
     }

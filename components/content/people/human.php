@@ -1,7 +1,7 @@
 <?php
 // Компонент одного человека
 function Human($name, $description, $picturePath) {
-    echo '
+    return '
         <div class="col human">
             <div class="human__photoContainer">
                 <img src="'.$picturePath.'" alt="" class="human__photo">

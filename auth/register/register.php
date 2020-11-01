@@ -3,7 +3,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/dbConnector.php'; // Для работы с БД
     require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/components/universal/errorMessage.php'; // Компонент сообщений об ошибке
     require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/register/visitorAdder.php'; // Добавлятель посетителя
-    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/register/assistantAdder.php'; // Добавлятель ассистента
+    require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/register/employeeAdder.php'; // Добавлятель ассистента
     $conn = connectToDb(); // Подключение к БД
 
     // Проверяет наличие записи в таблице БД
@@ -36,7 +36,8 @@
         }
         // Проверка наличия пользователя в БД
         $isUserInDb = isInDb($conn, "visitor", "login", $login)
-            || isInDb($conn, "assistant", "login", $login);
+            || isInDb($conn, "assistant", "login", $login)
+            || isInDb($conn, "admin", "login", $login);
         if($isUserInDb) {
             ErrorMessage("Sorry, but a user with this login already exists");
             return;
@@ -50,17 +51,17 @@
             "picture" => $picture
         );
         // Добавление пользователя в БД
-        if(!isset($_POST['isAssistant'])) $isAssistant = false; // Если checkbox isAssistant не выбран
-        else $isAssistant = true; // Если rememberMe checkbox выбран
-        if($isAssistant) { // Если пользователь желает себя зарегистрировать как ассистента
+        if(!isset($_POST['isEmployee'])) $isEmployee = false; // Если checkbox isEmployee не выбран
+        else $isEmployee = true; // Если isEmployee checkbox выбран
+        if($isEmployee) { // Если пользователь желает себя зарегистрировать как сотрудника
             if(empty($_POST['secretCode_reg'])) { // Если поле секретного кода пустое
-                ErrorMessage("Sorry, but you did not enter the secret code to register as a stand-assistant");
+                ErrorMessage("Sorry, but you did not enter the secret code to register as an employee");
                 return;
             }
             $enteredSecretCode = $_POST['secretCode_reg'];
-            $assistantAdder = new AssistantAdder($conn, $userData, $enteredSecretCode);
-            if(!$assistantAdder->addUser()) { // Попытка добавления нового ассистента
-                ErrorMessage($assistantAdder->error);
+            $employeeAdder = new EmployeeAdder($conn, $userData, $enteredSecretCode);
+            if(!$employeeAdder->addUser()) { // Попытка добавления нового ассистента
+                ErrorMessage($employeeAdder->error);
                 return;
             }
             header('Location: http://'.$_SERVER['HTTP_HOST'].'/vistavca/auth/auth.php'); // Переадресация

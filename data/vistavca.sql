@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Окт 22 2020 г., 18:31
--- Версия сервера: 10.4.14-MariaDB
--- Версия PHP: 7.2.33
+-- Host: 127.0.0.1
+-- Generation Time: Nov 01, 2020 at 02:36 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,35 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `vistavca`
+-- Database: `vistavca`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `assistant`
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `ID` int(11) NOT NULL,
+  `Login` varchar(50) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Description` text NOT NULL,
+  `Picture` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`ID`, `Login`, `Password`, `Name`, `Description`, `Picture`) VALUES
+(1, 'test', '$2y$10$NrviQCIMz8MfVam1WrSTS.DSnn1PcSZaaZU1tSfJpjfozQudQ5D/C', 'Test Admin', 'test admin', '63c9103fe445f07834a3d07e8071a24b_85340de1bd691c0c0abe316ba939c4a7.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assistant`
 --
 
 CREATE TABLE `assistant` (
@@ -37,7 +59,7 @@ CREATE TABLE `assistant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Дамп данных таблицы `assistant`
+-- Dumping data for table `assistant`
 --
 
 INSERT INTO `assistant` (`ID`, `Login`, `Password`, `Name`, `Description`, `Picture`) VALUES
@@ -52,7 +74,7 @@ INSERT INTO `assistant` (`ID`, `Login`, `Password`, `Name`, `Description`, `Pict
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `ev`
+-- Table structure for table `ev`
 --
 
 CREATE TABLE `ev` (
@@ -62,16 +84,20 @@ CREATE TABLE `ev` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Дамп данных таблицы `ev`
+-- Dumping data for table `ev`
 --
 
 INSERT INTO `ev` (`ID`, `Excursion_ID`, `Visitor_Login`) VALUES
-(80, 6, 'vi_eternal_dreamer');
+(80, 6, 'vi_eternal_dreamer'),
+(134, 5, 'robert'),
+(136, 6, 'dexter'),
+(139, 35, 'robert'),
+(146, 6, 'robert');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `excursion`
+-- Table structure for table `excursion`
 --
 
 CREATE TABLE `excursion` (
@@ -79,11 +105,11 @@ CREATE TABLE `excursion` (
   `Name` varchar(50) NOT NULL,
   `Description` text NOT NULL,
   `Date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Picture` varchar(25) NOT NULL
+  `Picture` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Дамп данных таблицы `excursion`
+-- Dumping data for table `excursion`
 --
 
 INSERT INTO `excursion` (`ID`, `Name`, `Description`, `Date`, `Picture`) VALUES
@@ -97,7 +123,7 @@ INSERT INTO `excursion` (`ID`, `Name`, `Description`, `Date`, `Picture`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `hu`
+-- Table structure for table `hu`
 --
 
 CREATE TABLE `hu` (
@@ -109,7 +135,7 @@ CREATE TABLE `hu` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `sa`
+-- Table structure for table `sa`
 --
 
 CREATE TABLE `sa` (
@@ -119,7 +145,7 @@ CREATE TABLE `sa` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `se`
+-- Table structure for table `se`
 --
 
 CREATE TABLE `se` (
@@ -129,7 +155,7 @@ CREATE TABLE `se` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `stand`
+-- Table structure for table `stand`
 --
 
 CREATE TABLE `stand` (
@@ -137,11 +163,11 @@ CREATE TABLE `stand` (
   `Name` varchar(50) NOT NULL,
   `Description` text NOT NULL,
   `Date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Picture` varchar(25) NOT NULL
+  `Picture` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Дамп данных таблицы `stand`
+-- Dumping data for table `stand`
 --
 
 INSERT INTO `stand` (`ID`, `Name`, `Description`, `Date`, `Picture`) VALUES
@@ -150,12 +176,13 @@ INSERT INTO `stand` (`ID`, `Name`, `Description`, `Date`, `Picture`) VALUES
 (3, 'Patton Museum Fort Knox', 'It\'s just a horse, no more. Heh!', '2020-09-27 18:47:10', '03.png'),
 (4, 'Artifact Exhibit', 'Some trash is available to your eyes', '2020-09-27 18:47:10', '04.png'),
 (5, 'Museum Hanging Systems', 'Wall space, an important area for museums, is where many valuable pieces of art are displayed. This is why museum hanging systems are very important. One system they use is a “track system”. This system allows them to display artwork and move the pieces around without constantly repairing the walls. Other systems are stationary and may include security hangers. ArtDisplay.com has been supplying these systems to museums for many years. Wall mounting options for odd shaped artwork or special pieces can be custom made. 10-31.com has been making custom wall mounts and displays for over 25 years.', '2020-09-27 18:47:10', '05.png'),
-(6, 'Museum Rails', 'Both MuseumRails and MuseumSigns offer a wide variety of solutions for displaying information to visitors and guests. From the simple and sleek options available through MuseumSigns to the customizable flexibility of MuseumRails’ modular system, there is something for any type of information display need.', '2020-09-27 18:47:10', '06.png');
+(6, 'Museum Rails', 'Both MuseumRails and MuseumSigns offer a wide variety of solutions for displaying information to visitors and guests. From the simple and sleek options available through MuseumSigns to the customizable flexibility of MuseumRails’ modular system, there is something for any type of information display need.', '2020-09-27 18:47:10', '06.png'),
+(10, 'New stand', 'new stand new stand new stand new stand new stand new stand new stand', '2020-11-01 13:35:57', 'd4fd9cb8af6ee24ed5b360341_dHA6Ly.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `visitor`
+-- Table structure for table `visitor`
 --
 
 CREATE TABLE `visitor` (
@@ -168,7 +195,7 @@ CREATE TABLE `visitor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Дамп данных таблицы `visitor`
+-- Dumping data for table `visitor`
 --
 
 INSERT INTO `visitor` (`ID`, `Login`, `Password`, `Name`, `Description`, `Picture`) VALUES
@@ -183,95 +210,110 @@ INSERT INTO `visitor` (`ID`, `Login`, `Password`, `Name`, `Description`, `Pictur
 (9, 'bentear', 'ben12345', 'Ben Tear', 'This friendly man has beady yellow eyes that are like two chunks of agend ivory. His fine, wavy, obsidian hair is worn in a style that reminds you of a sea urchin. He has an overmuscled build. His skin is china-white. He has an elegant nose and large hands. His wardrobe is elegant and mysterious, with a mostly gray and orange color scheme.', '09.jpg'),
 (10, 'denis', '$2y$10$myb.luiGfjfq0Ytiy/a6MeghsO9uNDGC0W/STvqbH9cA.bX6Q14Pi', 'Denis', 'Get away from me!', '067cbbd43ebf8749faa39082e237f03f_01.jpg'),
 (40, 'robert', '$2y$10$W2wghzxImAyuvfLEdvDLYebwykB4I.JZcjGosOvl.aahYISW/7yEa', 'Robert Downey JR', 'If You Are Nothing Without This Suit Then You Shouldn’t Have It.', '773afe009578ed7efd24ffdfd32669b3_original.png'),
-(41, 'vi_eternal_dreamer', '$2y$10$xojMkcZZQFVYIbv2sr38LeiqZWOMByB7JmOEoWiOi0gVzST8/dkum', 'Victoria', 'Still alive', '79aaf5f1debf605703a4d2dc4b81865c_2gRX8K2G7xw.jpg');
+(41, 'vi_eternal_dreamer', '$2y$10$xojMkcZZQFVYIbv2sr38LeiqZWOMByB7JmOEoWiOi0gVzST8/dkum', 'Victoria', 'Still alive', '79aaf5f1debf605703a4d2dc4b81865c_2gRX8K2G7xw.jpg'),
+(42, 'slim', '$2y$10$56xjdkeRXv/ggrOjFESPS.GDoK2XZctBl9375J3f6RBFJKsk27j3S', 'Slim Pickens', 'Some text', '32fcdfed17e57ab59efb3891d51cfb01_Slim-Pickens-285x300.jpg'),
+(45, 'dexter', '$2y$10$3sXPRs9EQAUAu.LsepIvJ.BkRn5/Zu72db3WX0FA/oGvaGRa8nckG', 'Dexter Holland', 'Will you take whats in my head?', 'a1ce6be9afa0ba45bc79b809147cadd1_85340de1bd691c0c0abe316ba939c4a7.jpg');
 
 --
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `assistant`
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Login` (`Login`);
+
+--
+-- Indexes for table `assistant`
 --
 ALTER TABLE `assistant`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Login` (`Login`);
 
 --
--- Индексы таблицы `ev`
+-- Indexes for table `ev`
 --
 ALTER TABLE `ev`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `excursion`
+-- Indexes for table `excursion`
 --
 ALTER TABLE `excursion`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `hu`
+-- Indexes for table `hu`
 --
 ALTER TABLE `hu`
   ADD PRIMARY KEY (`hash`),
   ADD KEY `user_ID` (`user_ID`);
 
 --
--- Индексы таблицы `sa`
+-- Indexes for table `sa`
 --
 ALTER TABLE `sa`
   ADD PRIMARY KEY (`PK`);
 
 --
--- Индексы таблицы `se`
+-- Indexes for table `se`
 --
 ALTER TABLE `se`
   ADD PRIMARY KEY (`PK`);
 
 --
--- Индексы таблицы `stand`
+-- Indexes for table `stand`
 --
 ALTER TABLE `stand`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `visitor`
+-- Indexes for table `visitor`
 --
 ALTER TABLE `visitor`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблицы `assistant`
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `assistant`
 --
 ALTER TABLE `assistant`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT для таблицы `ev`
+-- AUTO_INCREMENT for table `ev`
 --
 ALTER TABLE `ev`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
--- AUTO_INCREMENT для таблицы `excursion`
+-- AUTO_INCREMENT for table `excursion`
 --
 ALTER TABLE `excursion`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `stand`
+--
+ALTER TABLE `stand`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT для таблицы `stand`
---
-ALTER TABLE `stand`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT для таблицы `visitor`
+-- AUTO_INCREMENT for table `visitor`
 --
 ALTER TABLE `visitor`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

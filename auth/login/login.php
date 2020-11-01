@@ -21,7 +21,6 @@ function setSessionDataAndHash($conn, $userId, $userType, $rememberMe) {
             setcookie("hash", $hash, time()+86400, "/", "", false, true); // Установка куки на 24 часа
         }
     }
-
 }
 
 function isUserInTable($conn, $table, $login, $enteredPassword, &$userId, &$userType) {
@@ -31,13 +30,12 @@ function isUserInTable($conn, $table, $login, $enteredPassword, &$userId, &$user
     if(mysqli_num_rows($foundUser) != 0) { // Если пользователь по логину найден
         $userArr = mysqli_fetch_array($foundUser); // Представляем пользователя в виде массива
         $hashedPassword = $userArr['Password']; // Получение захешированного пароля из БД
-
         // Если введенный пароль не совпадает с захешированным паролем
         if(!password_verify($enteredPassword, $hashedPassword)){
             return false;
         }
         $userId = $userArr['ID']; // Получение id пользователя
-        $userType = $table; // Получение типа пользователя (assistant или visitor)
+        $userType = $table; // Получение типа пользователя (assistant, visitor или admin)
         return true;
     }
     return false;
@@ -59,7 +57,8 @@ if(isset($_POST['signIn'])) {
     $userId = null; // Пользовательский id
     $userType = null; // Пользовательский тип
     $isUserInDb = isUserInTable($conn, "visitor", $enteredLogin, $enteredPassword, $userId, $userType)
-        || isUserInTable($conn, "assistant", $enteredLogin, $enteredPassword, $userId, $userType);
+        || isUserInTable($conn, "assistant", $enteredLogin, $enteredPassword, $userId, $userType)
+        || isUserInTable($conn, "admin", $enteredLogin, $enteredPassword, $userId, $userType);
     if(!$isUserInDb) {
         ErrorMessage("Incorrect login or password");
         return;

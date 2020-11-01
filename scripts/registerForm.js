@@ -1,7 +1,7 @@
 const toggleSecretCodeInput = () => {
-    const assistantCheckBox = document.getElementById("assistantCheckBox");
+    const employeeCheckBox = document.getElementById("employeeCheckBox");
     const secretCodeInput = document.getElementById("secretCodeInput");
-    if(assistantCheckBox.checked){
+    if(employeeCheckBox.checked){
         secretCodeInput.style.display = "block";
     }
     else {

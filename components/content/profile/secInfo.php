@@ -25,7 +25,9 @@ function SecVisitorInfo ($conn, $login) {
         // Получаем и отображаем пользовательские экскурсии
         $excursions = mysqli_query($conn, $getExcursions_query);
         while($excursion = mysqli_fetch_array($excursions)) {
-            Excursion($excursion['ID'], $excursion['Name'], $excursion['Description'], 'assets/i/excursion/' . $excursion['Picture'],
+            if($excursion['Picture'] === "") $articlePicture = 'noPhoto_a.png';
+            else $articlePicture = $excursion['Picture'];
+            echo Excursion($excursion['ID'], $excursion['Name'], $excursion['Description'], 'assets/i/excursion/' . $articlePicture,
             $excursion['Date'], "true");
         }
     }

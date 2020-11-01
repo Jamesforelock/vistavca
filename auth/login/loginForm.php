@@ -9,11 +9,11 @@
                     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/vistavca/auth/login/login.php' ?>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Your login</label>
-                        <input name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Your password</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" autocomplete="off">
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1" name="rememberMe">

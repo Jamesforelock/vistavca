@@ -8,7 +8,9 @@ class ArticlesRenderer extends Renderer {
     public function render($items, $table) {
         $items = parent::reverseMySqlRes($items);
         foreach ($items as $item) {
-            Article($item['ID'], $item['Name'], $item['Description'], 'assets/i/' . $table . '/' . $item['Picture'],
+            if($item['Picture'] === "") $articlePicture = 'noPhoto_a.png';
+            else $articlePicture = $item['Picture'];
+                echo Article($item['ID'], $item['Name'], $item['Description'], 'assets/i/' . $table . '/' . $articlePicture,
                 $item['Date']);
         }
     }

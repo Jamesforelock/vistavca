@@ -21,7 +21,7 @@ class PeopleRenderer extends Renderer {
             if(isset($item['Picture'])) $picturePath = 'assets/i/'.$table.'/' . $item['Picture'];
             // Если у пользователя нет фото
             else $picturePath = 'assets/i/noPhoto.jpg';
-            Human($item['Name'], $item['Description'], $picturePath);
+            echo Human($item['Name'], $item['Description'], $picturePath);
             $itemsRowCount++;
         }
         echo '</div>'; // Закрываем строку
